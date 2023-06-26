@@ -1,6 +1,8 @@
 import express from 'express'
-import {regristerController} from '../controllers/authController.js'
+import AsyncHandler from "express-async-handler";
+import {regrister} from '../controllers/authController.js'
 const router=express.Router();
 
-router.post("/regrister",regristerController);
+router.route("/regrister").post(regrister)
+
 export default router;
