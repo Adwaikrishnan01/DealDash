@@ -65,12 +65,12 @@ export const login = AsyncHandler(async (req, res) => {
          token,
 });
   });   
-  export const test=async(req,res)=>{ 
+  export const test=AsyncHandler(async(req,res)=>{ 
     try{
-      res.json({message:"protected route acessed"})
+      res.json(req.user)
     }
    catch(error){
         res.send(error)
    }
 
-  }
+  })
