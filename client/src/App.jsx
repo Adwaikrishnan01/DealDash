@@ -17,7 +17,7 @@ function App() {
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/policy' element={<Policy/>}/>
-      <Route path='./*' element={<Pagenotfound/>}/>
+      <Route path='/*' element={<Pagenotfound/>}/>
       </Routes>
 
    

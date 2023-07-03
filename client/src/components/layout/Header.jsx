@@ -38,7 +38,7 @@ function Header() {
       <header className="header">
         <div className="header__content">
           <Link to="/" className="header__content__logo">
-            Navbar
+            DealDash
           </Link>
           <nav
             className={`${"header__content__nav"} 
@@ -50,13 +50,13 @@ function Header() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/profile">Profile</Link>
+                <Link to="/contact">Contact</Link>
               </li>
               <li>
-                <Link to="/Works">Browse Works</Link>
+                <Link to="/about">About</Link>
               </li>
               <li>
-                <Link to="/help">Help</Link>
+                <Link to="/policy">Policy</Link>
               </li>
   
               <Link to="/register">
