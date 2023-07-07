@@ -4,36 +4,33 @@ import userModel from'../models/userModel.js'
 import JWT from "jsonwebtoken";
 import colors from 'colors'
 import { comparePassword, hashpassword } from "../helpers/authHelper.js";
-export const regrister=AsyncHandler(async(req,res)=>{
+export const register=AsyncHandler(async(req,res)=>{
 
     const {name,email,password,phone,address}=req.body
     const hashedpassword=await hashpassword(password)
-    const user=await userModel.findOne({email})
+    const user=await userModel.findOne({email:req.body.email})
     if (!user) {
-        userModel
+       userModel
           .create({
             name,
             email,
             password: hashedpassword,
             phone,
             address
-          })
-          .then((newuser) => {
-            console.log('User created:', newuser);
-      
+          }).then((createdUser) => {
             res.status(201).json({
-              _id: newuser._id,
-              name: newuser.name,
-              email: newuser.email,
-              phone: newuser.phone,
-              address: newuser.address
-            });
-          })
-          .catch((error) => {
-            console.error('Error creating user:', error);
-            res.status(500).json({ error: 'Failed to create user' });
-          });
-      } 
+              _id: createdUser._id,
+              name: createdUser.name,
+              email: createdUser.email,
+              phone: createdUser.phone,
+              address: createdUser.address
+            })
+           } )
+      }else { 
+              res.status(400);
+              throw new Error("User already registerd or the email already in use")
+          }
+       
 })
 
 export const login = AsyncHandler(async (req, res) => {

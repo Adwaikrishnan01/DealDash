@@ -3,19 +3,21 @@ import Header from './Header'
 import Footer from './Footer'
 import Helmet from 'react-helmet'
 
-const Layout = ({children,title}) => {
+
+const Layout = ({ children, title }) => {
   return (
     <>
-     <Helmet>
-                <meta charSet="utf-8" />
-                <title>{title}</title>
-                <link rel="canonical" href="http://mysite.com/example" />
-            </Helmet>
-      <Header/>
-      <main style={{minHeight:'80vh'}}>{children}</main>
-       <Footer/>
-     </>
-    
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{title}</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+      <Header />
+      <main style={{ minHeight: '80vh' }}>
+        {children}</main>
+      <Footer />
+    </>
+
   )
 }
 
