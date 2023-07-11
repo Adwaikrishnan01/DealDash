@@ -30,7 +30,7 @@ function Register() {
     } catch (error) {
     if(error.request.status===400){
       alert("user with email already regristerd")
-    }
+    } 
     }
   };
   return (
