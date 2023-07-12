@@ -1,13 +1,18 @@
 import React, { useState,useEffect } from 'react';
 import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
+import { useSelector,useDispatch} from 'react-redux'
+
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import './Header.scss';
+import { userLogout } from '../Redux/authSlice';
 
 function Header() {
     const navigate = useNavigate();
+    const user=useSelector((state)=>state.auth)
     const [menuOpen, setMenuOpen] = useState(false);
+    const dispatch = useDispatch();
     const [size, setSize] = useState({
       width: 0,
       height: 0,
@@ -33,6 +38,7 @@ function Header() {
     const menuToggleHandler = () => {
       setMenuOpen((p) => !p);
     };
+
   
     return (
       <header className="header">
@@ -58,13 +64,17 @@ function Header() {
               <li>
                 <Link to="/policy">Policy</Link>
               </li>
-  
-              <Link to="/register">
+               {!user?
+               (<><Link to="/register">
                 <button className="btn">Register</button>
               </Link>
               <Link to="/login">
                 <button className="btn btn__login">Login</button>
-              </Link>
+              </Link></>):
+              (<><Link to="/login">
+                <button className="btn btn__login" onClick={()=>dispatch(userLogout())}>Logout</button>
+              </Link></>)}
+              
             </ul>
           </nav>
           <div className="header__content__toggle">

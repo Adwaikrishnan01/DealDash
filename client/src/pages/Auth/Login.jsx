@@ -18,7 +18,7 @@ const Login = () => {
       try {
         
         if (!email || !password) {
-          return alert("Please Privde All Feilds");
+          return alert("Please Provide All Fields");
         }
         store.dispatch(userLogin({ email, password }));
       } catch (error) {
