@@ -10,7 +10,7 @@ import { userLogout } from '../Redux/authSlice';
 
 function Header() {
     const navigate = useNavigate();
-    const user=useSelector((state)=>state.auth)
+    const user=useSelector((state)=>state.auth).user
     const [menuOpen, setMenuOpen] = useState(false);
     const dispatch = useDispatch();
     const [size, setSize] = useState({
@@ -39,7 +39,7 @@ function Header() {
       setMenuOpen((p) => !p);
     };
 
-  
+    console.log("user in header",user)
     return (
       <header className="header">
         <div className="header__content">

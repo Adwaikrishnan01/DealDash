@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 const Homepage = () => {
   const user=useSelector((state)=>state.auth)
   console.log("selector working",user)
+ 
 //   const [userdata,setuserData]=useState({user:null,token:''})
 //   useEffect(() => {
 //       const userinfo=localStorage.getItem("userinfo")

@@ -12,6 +12,7 @@ function Register() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
 
   const handleregrister = async (e) => {
@@ -20,7 +21,7 @@ function Register() {
     
     try {
       const res = await axios.post(`${import.meta.env.VITE_APP_API}/api/v1/auth/register`, { 
-        name, email, password,phone, address 
+        name, email, password,phone, address ,answer
       });
       if (res &&res.status===201) {
         console.log("response data",res.data);
@@ -42,6 +43,7 @@ function Register() {
           <input className='password' placeholder='Enter the password' value={password} type='password' onChange={(e) => setPassword(e.target.value)}></input>
           <input className='phone' placeholder='Phone number' value={phone} onChange={(e) => setPhone(e.target.value)}></input>
           <input className='address' placeholder='Address' value={address} onChange={(e) => setAddress(e.target.value)}></input>
+          <input className='sport' placeholder='Enter your favourite sport' value={answer} onChange={(e) => setAnswer(e.target.value)}></input>
           <button className='register' type="submit">Register</button>
         </div></form>
       </main>

@@ -6,7 +6,7 @@ import colors from 'colors'
 import { comparePassword, hashpassword } from "../helpers/authHelper.js";
 export const register=AsyncHandler(async(req,res)=>{
 
-    const {name,email,password,phone,address}=req.body
+    const {name,email,password,phone,address,answer}=req.body
     const hashedpassword=await hashpassword(password)
     const user=await userModel.findOne({email:req.body.email})
     if (!user) {
@@ -16,8 +16,9 @@ export const register=AsyncHandler(async(req,res)=>{
             email,
             password: hashedpassword,
             phone,
-            address
-          }).then((createdUser) => {
+            address,
+            answer
+          }).then((createdUser) => { 
             res.status(201).json({
               _id: createdUser._id,
               name: createdUser.name,
@@ -29,9 +30,8 @@ export const register=AsyncHandler(async(req,res)=>{
       }else { 
               res.status(400);
               throw new Error("User already registerd or the email already in use")
-          }
-       
-})
+          }      
+});
 
 export const login = AsyncHandler(async (req, res) => {
     const { email, password } = req.body;
@@ -40,8 +40,6 @@ export const login = AsyncHandler(async (req, res) => {
         return;
       }
     const user = await userModel.findOne({ email }); 
-
-  
     if (!user) {  
         res.status(404);
       throw new Error("user not found");    
@@ -54,14 +52,45 @@ export const login = AsyncHandler(async (req, res) => {
       } 
       const token= JWT.sign({_id:user._id},process.env.JWT_SECRET,{expiresIn:"1d",})
        res.status(200).json({ 
-        message: "authenticated" ,
          user:{name:user.name,
               email:user.email,
               phone:user.phone,
               },
+         isAuthenticated:true,     
          token,
 });
-  });   
+});   
+
+  export const forgotpassword=AsyncHandler(async(req,res)=>{
+    const {email,newPassword,answer}=req.body;
+    if(!email){
+      throw new Error("Email required")
+    }
+    if(!newPassword){
+      throw new Error("newpassword requied")
+    }
+    if(!answer){
+      throw new Error("answer required")
+    }
+   
+
+    const user=await userModel.findOne({email})
+    if(!user){
+      throw new Error("User not found")
+    } 
+     const sport=user.answer;
+     if(sport===answer){
+     const hashed=await hashpassword(newPassword)
+     await userModel.findByIdAndUpdate(user._id,{password:hashed});
+     res.status(200).send({
+      message:"password reset successfully"
+     })
+    }else{
+      res.status(400)
+      throw new Error("your favourite sport doesn't match with your anwser")
+    }
+  })
+
   export const test=AsyncHandler(async(req,res)=>{ 
     try{
       res.json(req.user)
@@ -70,4 +99,4 @@ export const login = AsyncHandler(async (req, res) => {
         res.send(error)
    }
 
-  })
+  });
