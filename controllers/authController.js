@@ -1,6 +1,8 @@
 import AsyncHandler from "express-async-handler";
 import { json } from "express";
 import userModel from'../models/userModel.js'
+import categoryModel from "../models/categoryModel.js";
+import slugify from "slugify";
 import JWT from "jsonwebtoken";
 import colors from 'colors'
 import { comparePassword, hashpassword } from "../helpers/authHelper.js";
@@ -24,7 +26,9 @@ export const register=AsyncHandler(async(req,res)=>{
               name: createdUser.name,
               email: createdUser.email,
               phone: createdUser.phone,
-              address: createdUser.address
+              address: createdUser.address,
+              success: true,
+              message: "User Registerd Successfully",
             })
            } )
       }else { 
@@ -55,9 +59,11 @@ export const login = AsyncHandler(async (req, res) => {
          user:{name:user.name,
               email:user.email,
               phone:user.phone,
+              role:user.role
               },
          isAuthenticated:true,     
          token,
+         
 });
 });   
 
@@ -91,6 +97,23 @@ export const login = AsyncHandler(async (req, res) => {
     }
   })
 
+  export const currentUser = async (req, res) => {
+    try {
+      const user = await userModel.findOne({ _id: req.body.userId });
+      return res.status(200).send({
+        success: true,
+        message: "User Fetched Successfully",
+        user,
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send({
+        success: false,
+        message: "unable to get current user",
+        error,
+      });
+    }
+  };
   export const test=AsyncHandler(async(req,res)=>{ 
     try{
       res.json(req.user)
@@ -100,3 +123,4 @@ export const login = AsyncHandler(async (req, res) => {
    }
 
   });
+   

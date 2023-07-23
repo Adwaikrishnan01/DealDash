@@ -4,6 +4,8 @@ import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 import './Auth.scss'
 import Layout from '../../components/layout/Layout.jsx';
+import { Registeruser } from '../../components/Redux/authActions';
+import store from '../../components/Redux/store';
 
 
 function Register() {
@@ -14,29 +16,35 @@ function Register() {
   const [address, setAddress] = useState("");
   const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
-
-  const handleregrister = async (e) => {
+ 
+  const handleregister = async (e) => {
     e.preventDefault();
     console.log(name, email, password, phone, address);
-    
-    try {
-      const res = await axios.post(`${import.meta.env.VITE_APP_API}/api/v1/auth/register`, { 
-        name, email, password,phone, address ,answer
-      });
-      if (res &&res.status===201) {
-        console.log("response data",res.data);
-        alert("User is registered please login");
-        navigate('/login');
-      } 
-    } catch (error) {
-    if(error.request.status===400){
-      alert("user with email already regristerd")
-    } 
-    }
+     
+    // try {
+    //   const res = await axios.post(`${import.meta.env.VITE_APP_API}/api/v1/auth/register`, { 
+    //     name, email, password,phone, address ,answer
+    //   });
+    //   if (res &&res.status===201) {
+    //     console.log("response data",res.data);
+    //     alert("User is registered please login");
+    //     navigate('/login');
+    //   } 
+    // } catch (error) {
+    // if(error.request.status===400){
+    //   alert("user with email already regristerd")
+    // } 
+    // }
+     try{
+      store.dispatch(Registeruser({name, email, password,phone, address ,answer}))
+      navigate('/login')
+     }catch(error){
+      console.log("requaser error",error)
+     }
   };
   return (
     <> <Layout title='Register'>
-      <main><form onSubmit={handleregrister}>
+      <main><form onSubmit={handleregister}>
         <div className='login-container'>
           <input className='name' placeholder='Name' value={name} onChange={(e) => setName(e.target.value)}></input>
           <input className='email' placeholder='Enter the email' value={email} onChange={(e) => setEmail(e.target.value)}></input>

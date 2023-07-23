@@ -5,6 +5,7 @@ import connectDB from './config/db.js';
 import morgan from 'morgan';
 import authRoutes from './router/authRoute.js'
 import cors from 'cors'
+import categoryRoutes from './router/categoryRoute.js';
 const app=express()
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(express.json())
 app.use(morgan('dev'));
 
 app.use("/api/v1/auth",authRoutes)
+app.use("/api/v1/category",categoryRoutes)
 
 app.get('/',(req,res)=>{
     res.send('<p>Ecommerce app</p>');

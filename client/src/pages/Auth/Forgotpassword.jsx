@@ -34,7 +34,7 @@ const Forgotpassword = () => {
         
     };
   return (
-    <> <Layout title='Login'> 
+    <> <Layout title='Forgotpassword'> 
     <main><form>
     <div className='login-container'>
       <input className='email' placeholder='Enter the email' value={email} onChange={(e)=>setEmail(e.target.value)}></input>

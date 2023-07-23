@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {userLogin} from './authActions.jsx'
+import {userLogin,getCurrentUser, Registeruser} from './authActions.jsx'
 const token = localStorage.getItem("token")
   ? localStorage.getItem("token")
   : null;
@@ -7,7 +7,6 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: {
     loading: false,
-   
     user: null,
     token,
     error: null,
@@ -37,6 +36,27 @@ const authSlice = createSlice({
       state.error = payload;
       
     });
+    builder.addCase(getCurrentUser.pending,(state)=>{
+       state.loading=true;
+       state.error=null;
+    });
+    builder.addCase(getCurrentUser.fulfilled,(state,{payload})=>{
+      state.loading=false;
+      state.error=null;
+      state.user=payload.user;
+    });
+    builder.addCase(getCurrentUser.rejected,(state,{payload})=>{
+      state.error=payload;
+      state.loading=false;
+    })
+    builder.addCase(Registeruser.pending,(state)=>{
+      state.loading=true;
+      state.error=null;
+   });
+   builder.addCase(Registeruser.rejected,(state,{payload})=>{
+    state.error=payload;
+    state.loading=false;
+  })
 }
 });
 

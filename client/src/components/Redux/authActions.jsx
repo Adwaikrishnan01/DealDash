@@ -16,8 +16,9 @@ export const userLogin = createAsyncThunk(
         //store token
         if (data.token) {
           alert("logged in");
-          const userinfo=JSON.stringify(data)
-          localStorage.setItem("userinfo",userinfo);  
+          // const userinfo=JSON.stringify(data)
+          // localStorage.setItem("userinfo",userinfo);  
+          localStorage.setItem("token", data.token);
         }else{
           alert(data.message)
         }
@@ -32,4 +33,32 @@ export const userLogin = createAsyncThunk(
       }
     }
   );
+   export const getCurrentUser=createAsyncThunk('auth/getCurrentUser',async({rejectWithValue})=>{
+        try{
+          const {data}=await API.get('/api/v1/auth/currentuser')
+          return res?.data;
+        }catch(error){
+          console.log(error)
+          if (error.response && error.response.data.message) {
+            return rejectWithValue(error.response.data.message);
+          } else {
+            return rejectWithValue(error.message);
+          }
+        }
+   })
+   export const Registeruser=createAsyncThunk('auth/RegisterUser',async( {name, email, password,phone, address ,answer},{rejectWithValue})=>{
+    try{
+            const {data}=await API.post('/api/v1/auth/register',{name, email, password,phone, address ,answer})
+              if(data.success){
+                alert("user registerd successfully!!!!!")
+              }
+    }catch(error){
+      console.log(error)
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+   })
  

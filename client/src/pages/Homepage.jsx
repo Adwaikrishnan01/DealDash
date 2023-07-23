@@ -2,28 +2,24 @@ import React from 'react'
 import {useEffect,useState} from 'react'
 import Layout from '../components/layout/Layout'
 import { useSelector } from 'react-redux'
-
+import { useNavigate } from 'react-router-dom'
+import Spinner from 'react-bootstrap/Spinner';
 const Homepage = () => {
-  const user=useSelector((state)=>state.auth)
+  const {loading,error,user}=useSelector((state)=>state.auth)
+  const navigate=useNavigate()
   console.log("selector working",user)
  
-//   const [userdata,setuserData]=useState({user:null,token:''})
-//   useEffect(() => {
-//       const userinfo=localStorage.getItem("userinfo")
-//       const text=JSON.parse(userinfo)
-//       setuserData((prevUserData) => ({
-//         ...prevUserData,
-//         user: text.user,
-//         token: text.token
-//       }));
-//     },[])
-// console.log("userdata",userdata);
   
   return (
     <Layout title={'DealDash-home'}>
-        <div>Homepage
-        </div><div></div></Layout>
-       
+
+        {user?.role===1 && navigate('/admindashboard')}
+        {error && <span>{alert(error)}</span>}
+        {loading? (<Spinner/>):(
+                <div>Homepage</div>
+        )}
+        <div></div>
+    </Layout>   
   )
 }
 
