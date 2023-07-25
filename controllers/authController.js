@@ -123,4 +123,3 @@ export const login = AsyncHandler(async (req, res) => {
    }
 
   });
-   
