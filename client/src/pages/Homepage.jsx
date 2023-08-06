@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux'
 import { useNavigate,Link } from 'react-router-dom'
 import API from '../../services/API'
 import Spinner from 'react-bootstrap/Spinner';
-import { Checkbox } from 'antd'
+import { Checkbox, Radio } from 'antd'
+import { Prices } from '../components/Prices'
 const Homepage = () => {
   const {loading,error,user}=useSelector((state)=>state.auth)
   const navigate=useNavigate()
@@ -13,6 +14,8 @@ const Homepage = () => {
  
   const [products, setProducts] = useState([]);
   const [category,setCategory]=useState([])
+  const[checked,setChecked]=useState([])
+  const [radio,setRadio]=useState([])
       
         //getall products
         const getAllProducts = async () => {
@@ -39,6 +42,30 @@ const Homepage = () => {
           getAllProducts();
           
         }, []);
+
+        const handleFilter=(value,id)=>{
+          let all=[...checked]
+          console.log("all",all,id)
+          
+          if (value) {
+            all.push(id);
+          } else {
+            all = all.filter((c) => c !== id);
+          }
+          setChecked(all);
+        }
+      const filteredProducts=async()=>{
+                 try{
+                  const {data}=await API.get('/api/v1/product/product-filter')
+                  console.log("filteredproduct",data)
+                  //setProducts()
+                 }catch(error){
+                  console.log(error)
+                 }
+      }
+      useEffect(()=>{
+        filteredProducts()
+      },[radio,checked])
   
   return (
     <Layout title={'DealDash-home'}>
@@ -47,7 +74,7 @@ const Homepage = () => {
         {error && <span>{alert(error)}</span>}
         {loading? (<Spinner/>):(<>
         <div className='container-fluid row mt-3 home-page'>
-          <div className='col md-3 filters'>
+          <div className='col mt-3 filters'>
             <h4 className='test-center'>Filter by category</h4>
             <div className='d-flex flex-column'>
               {category?.map((c)=>(
@@ -55,14 +82,20 @@ const Homepage = () => {
                 >{c.name}</Checkbox>
               ))}
             </div>
+             <h4 className='test-center mt-4'>Filter by Price</h4>
+            <div className='d-flex flex-column'>
+            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+              {Prices?.map((p) => (
+                <div key={p._id}>
+                  <Radio value={p.array}>{p.name}</Radio>
+                </div>
+              ))}
+            </Radio.Group>
+            </div>
           </div>
-        </div>
-            
-        <div className="row dashboard">
-        <div className="col-md-3">
-        
-        </div>
-        <div className="col-md-9 ">
+         
+    
+        <div className="col-md-9 ">{JSON.stringify(radio)}
           <h1 className="text-center">All Products List</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
@@ -86,8 +119,8 @@ const Homepage = () => {
             ))}
           </div>
         </div>
-      </div>
-                
+      
+      </div>          
        </> )}
         
     </Layout>   

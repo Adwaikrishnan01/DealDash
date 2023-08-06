@@ -112,4 +112,18 @@ export const updateProduct=AsyncHandler(async(req,res)=>{
     else{throw new Error("photo not provided")}
   await product.save();
   res.status(201).send({message:"product updated successfully",product})
-})
+});
+export const filterProduct=AsyncHandler(async(req,res)=>{
+  const {checked,radio}=req.body;
+  let args={};                       //filter products by setting arguments
+  if(checked?.length > 1)
+     args.category=checked;           //assign argument category to args array
+  if(radio?.length)
+     args.price={$gte:radio[0],$lte:radio[1]};        //assign argument price to args array
+  const products=await productModel.find(args)
+    if(products){
+      res.status(200).send({success:true,products});
+    }else{
+      throw new Error("no products can be found");
+    }
+});
