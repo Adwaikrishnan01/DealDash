@@ -33,14 +33,14 @@ const Login = () => {
     };
   return (
     <> <Layout title='Login'> 
-    <main><form>
+    <div className='outer-container'><form>
     <div className='login-container'>
       <input className='email' placeholder='Enter the email' value={email} onChange={(e)=>setEmail(e.target.value)}></input>
          <input className='password' placeholder='Enter the password' type='password' value={password} onChange={(e)=>setPassword(e.target.value)}></input>
          <button className='login' typpe='submit' onClick={handleLogin}>Login</button>
          <Link to="/forgotpassword">Forgot password?</Link>
          
-    </div></form></main></Layout>
+    </div></form></div></Layout>
    
 
     </>

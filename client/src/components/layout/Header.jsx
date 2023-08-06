@@ -2,16 +2,16 @@ import React, { useState,useEffect } from 'react';
 import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import { useSelector,useDispatch} from 'react-redux'
-
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate  } from 'react-router-dom';
 import './Header.scss';
 import { userLogout } from '../Redux/authSlice';
+
 
 function Header() {
     const navigate = useNavigate();
     const user=useSelector((state)=>state.auth).user
     console.log("user in header",user)
+  
     const [menuOpen, setMenuOpen] = useState(false);
     const dispatch = useDispatch();
     const [size, setSize] = useState({
@@ -35,6 +35,7 @@ function Header() {
         setMenuOpen(false);
       }
     }, [size.width, menuOpen]);
+    
   
     const menuToggleHandler = () => {
       setMenuOpen((p) => !p);

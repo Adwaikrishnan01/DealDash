@@ -99,8 +99,7 @@ export const deleteProduct=AsyncHandler(async(req,res)=>{
 })
 export const updateProduct=AsyncHandler(async(req,res)=>{ 
   const { photo } = req.files;
-  const newProduct=req.fields
-
+  const newProduct=req.fields;
   if(!newProduct)
      throw new Error("Error in sending new product")
   const product=await productModel.findByIdAndUpdate( req.params.id,
@@ -113,5 +112,4 @@ export const updateProduct=AsyncHandler(async(req,res)=>{
     else{throw new Error("photo not provided")}
   await product.save();
   res.status(201).send({message:"product updated successfully",product})
-
 })

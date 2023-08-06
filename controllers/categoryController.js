@@ -6,7 +6,7 @@ export const createCategorycontroller=AsyncHandler(async(req,res)=>{
     const category=await categoryModel.findOne({name})
     if(!category){
          await categoryModel.create({name,slug:slugify(name)}).then(()=>{
-            res.status(201).send({name:name,message:'new category created'})
+            res.status(201).send({name:name,message:'new category created',success:true})
         })
     }
     
@@ -23,7 +23,7 @@ export const updateCategorycontroller=AsyncHandler(async(req,res)=>{
   console.log("update",name,id)
   const newcategory=await categoryModel.findByIdAndUpdate(id,{name,slug:slugify(name)},{new:true})
   if(newcategory)
-    res.status(201).send({newcategory})
+    res.status(201).send({newcategory,success:true,message:"category updated successfully"})
   else{
     throw new Error("error in updating category")
   }
@@ -35,7 +35,7 @@ export const getCategory=AsyncHandler(async(req,res)=>{
   if(!allcategory){
     throw new Error("Category is empty")
   }else{
-    res.status(200).json({allcategory})
+    res.status(200).json({success:true,allcategory})
   }
     })
 

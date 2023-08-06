@@ -33,10 +33,12 @@ export const userLogin = createAsyncThunk(
       }
     }
   );
-   export const getCurrentUser=createAsyncThunk('auth/getCurrentUser',async({rejectWithValue})=>{
+   export const getCurrentUser=createAsyncThunk('user/getCurrentUser',async(_,{rejectWithValue})=>{
         try{
           const {data}=await API.get('/api/v1/auth/currentuser')
-          return res?.data;
+          console.log("datafinal",data)
+          if(data)
+           return data;
         }catch(error){
           console.log(error)
           if (error.response && error.response.data.message) {

@@ -44,7 +44,7 @@ function Register() {
   };
   return (
     <> <Layout title='Register'>
-      <main><form onSubmit={handleregister}>
+      <div className='outer-container'><form onSubmit={handleregister}>
         <div className='login-container'>
           <input className='name' placeholder='Name' value={name} onChange={(e) => setName(e.target.value)}></input>
           <input className='email' placeholder='Enter the email' value={email} onChange={(e) => setEmail(e.target.value)}></input>
@@ -54,7 +54,7 @@ function Register() {
           <input className='sport' placeholder='Enter your favourite sport' value={answer} onChange={(e) => setAnswer(e.target.value)}></input>
           <button className='register' type="submit">Register</button>
         </div></form>
-      </main>
+      </div>
     </Layout>
     </>
   );

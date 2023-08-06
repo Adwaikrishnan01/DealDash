@@ -35,14 +35,14 @@ const Forgotpassword = () => {
     };
   return (
     <> <Layout title='Forgotpassword'> 
-    <main><form>
+    <div className='outer-container'><form>
     <div className='login-container'>
       <input className='email' placeholder='Enter the email' value={email} onChange={(e)=>setEmail(e.target.value)}></input>
       <input className='email' placeholder='Enter your favourite sport' value={answer} onChange={(e)=>setAnswer(e.target.value)}></input>
          <input className='password' placeholder='Enter the new password' type='password' value={newPassword} onChange={(e)=>setPassword(e.target.value)}></input>
          <button className='login' typpe='submit' onClick={handleSubmit}>Change password</button>
          
-    </div></form></main></Layout>
+    </div></form></div></Layout>
    
 
     </>

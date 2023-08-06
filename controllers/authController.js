@@ -97,23 +97,15 @@ export const login = AsyncHandler(async (req, res) => {
     }
   })
 
-  export const currentUser = async (req, res) => {
-    try {
-      const user = await userModel.findOne({ _id: req.body.userId });
-      return res.status(200).send({
-        success: true,
-        message: "User Fetched Successfully",
-        user,
-      });
-    } catch (error) {
-      console.log(error);
-      return res.status(500).send({
-        success: false,
-        message: "unable to get current user",
-        error,
-      });
-    }
-  };
+  export const currentUser = AsyncHandler(async (req, res) => {
+     const user=req.user;
+     if(user){
+        res.send({message:"user found successfully",
+          user})
+     }else{
+       throw new Error("error in user")
+     }
+  })
   export const test=AsyncHandler(async(req,res)=>{ 
     try{
       res.json(req.user)
