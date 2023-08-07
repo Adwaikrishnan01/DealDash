@@ -10,6 +10,6 @@ router.route('/getsingleproduct/:slug').get(getSingleProduct)
 router.route('/getphoto/:id').get(productPhoto)
 router.route('/deleteproduct/:id').delete(deleteProduct)
 router.route('/updateproduct/:id').put(formidable(),updateProduct)
-router.route('/product-filter').get(filterProduct)
+router.route('/product-filter').post(filterProduct)
 
 export default router;

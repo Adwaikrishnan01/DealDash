@@ -56,16 +56,21 @@ const Homepage = () => {
         }
       const filteredProducts=async()=>{
                  try{
-                  const {data}=await API.get('/api/v1/product/product-filter')
+                  const {data}=await API.post('/api/v1/product/product-filter',{checked,radio})
+                  setProducts(data?.products)
                   console.log("filteredproduct",data)
                   //setProducts()
                  }catch(error){
                   console.log(error)
                  }
       }
-      useEffect(()=>{
-        filteredProducts()
-      },[radio,checked])
+      useEffect(() => {
+        if (!checked?.length || !radio?.length) getAllProducts();
+      }, [checked.length, radio.length]);
+    
+      useEffect(() => {
+        if (checked?.length || radio?.length) filteredProducts();
+      }, [checked, radio]);
   
   return (
     <Layout title={'DealDash-home'}>
@@ -92,6 +97,14 @@ const Homepage = () => {
               ))}
             </Radio.Group>
             </div>
+            <div className='d-flex flex-column'>
+            <button
+              className="btn btn-secondary mt-2"
+              onClick={() => window.location.reload()}
+            >
+              RESET FILTERS
+            </button>
+            </div>
           </div>
          
     
@@ -112,7 +125,8 @@ const Homepage = () => {
                   />
                   <div className="card-body">
                     <h5 className="card-title" >{p.name}</h5>
-                    <p className="card-text">{p.description}</p>
+                    <p className="card-text">{p.description.substring(0,29)}</p>
+                    <p className="card-text">{p.price}</p>
                   </div>
                 </div>
               </Link>

@@ -115,11 +115,13 @@ export const updateProduct=AsyncHandler(async(req,res)=>{
 });
 export const filterProduct=AsyncHandler(async(req,res)=>{
   const {checked,radio}=req.body;
+  console.log(checked,radio)
   let args={};                       //filter products by setting arguments
-  if(checked?.length > 1)
+  if(checked && checked.length > 0)
      args.category=checked;           //assign argument category to args array
-  if(radio?.length)
-     args.price={$gte:radio[0],$lte:radio[1]};        //assign argument price to args array
+  if(radio && radio.length)
+     args.price={$gte:radio[0],$lte:radio[1]}; 
+    console.log("args",args)       //assign argument price to args array
   const products=await productModel.find(args)
     if(products){
       res.status(200).send({success:true,products});
