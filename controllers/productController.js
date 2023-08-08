@@ -129,3 +129,16 @@ export const filterProduct=AsyncHandler(async(req,res)=>{
       throw new Error("no products can be found");
     }
 });
+//searchproduct controller
+export const searchProduct=AsyncHandler(async(req,res)=>{
+  const {keyword}=req.params;
+  const results=await productModel.find({
+    $or:[                                           //mongodb or operator to query based on name or description
+    { name: { $regex: keyword, $options: "i" } },
+    { description: { $regex: keyword, $options: "i" } },  //i:case insensitive
+    ]
+  }).select("-photo");
+    res.json(results);
+  if(!results)
+    throw new Error("no matching products found")
+})

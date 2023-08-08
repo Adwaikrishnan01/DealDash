@@ -11,7 +11,7 @@ const Homepage = () => {
   const {loading,error,user}=useSelector((state)=>state.auth)
   const navigate=useNavigate()
   console.log("selector working",user)
- 
+
   const [products, setProducts] = useState([]);
   const [category,setCategory]=useState([])
   const[checked,setChecked]=useState([])
@@ -83,7 +83,7 @@ const Homepage = () => {
             <h4 className='test-center'>Filter by category</h4>
             <div className='d-flex flex-column'>
               {category?.map((c)=>(
-                <Checkbox onChange={(e) => handleFilter(e.target.checked, c._id)}
+                <Checkbox key={c.id} onChange={(e) => handleFilter(e.target.checked, c._id)}
                 >{c.name}</Checkbox>
               ))}
             </div>
@@ -108,15 +108,11 @@ const Homepage = () => {
           </div>
          
     
-        <div className="col-md-9 ">{JSON.stringify(radio)}
+        <div className="col-md-9 ">
           <h1 className="text-center">All Products List</h1>
           <div className="d-flex flex-wrap">
-            {products?.map((p) => (
-              <Link
-                key={p._id}
-              
-                className="product-link"
-              >
+            {products?.map((p) => (<>
+              <Link key={p._id} className="product-link" >
                 <div className="card m-2" style={{ width: "18rem" }}>
                   <img
                     src={`http://localhost:8000/api/v1/product/getphoto/${p._id}`}
@@ -129,7 +125,7 @@ const Homepage = () => {
                     <p className="card-text">{p.price}</p>
                   </div>
                 </div>
-              </Link>
+              </Link></>
             ))}
           </div>
         </div>

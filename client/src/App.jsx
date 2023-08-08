@@ -19,6 +19,7 @@ import Manageusers from './pages/Admin/Manageusers.jsx'
 import ManageProduct from './pages/Admin/ManageProduct.jsx'
 import UpdateProduct from './pages/Admin/UpdateProduct.jsx'
 import Products from './pages/Admin/Products.jsx'
+import Searchitems from './pages/Searchitems.jsx'
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
       <Route path='/policy' element={<ProtectedRoute><Policy/></ProtectedRoute>}/>
       <Route path='/login' element={<PublicRoute><Login/></PublicRoute>}/>
       <Route path='/forgotpassword' element={<Forgotpassword/>}/>
+      <Route path='/search' element={<Searchitems/>}/>
       <Route path='/register' element={<PublicRoute><Register/></PublicRoute>}/>
       <Route path='/*' element={<Pagenotfound/>}/>
         <Route path='/admindashboard' element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
