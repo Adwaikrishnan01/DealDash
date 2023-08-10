@@ -2,17 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import { useSelector, useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate,NavLink } from 'react-router-dom';
 import './Header.scss';
 import { userLogout } from '../Redux/authSlice';
 import Searchinput from '../Searchinput';
+import {useCategory} from '../../hooks/useCategory';
 
 
 function Header() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth).user
   console.log("user in header", user)
-
+  const categories = useCategory()
+  console.log("hooke",categories)
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const [size, setSize] = useState({
@@ -53,13 +55,38 @@ function Header() {
           className={`${"header__content__nav"} 
             ${menuOpen && size.width < 768 ? `${"isMenu"}` : ""} 
             }`}> <Searchinput />
-          <ul>{user === null && (<><li>
-            <Link to="/">Home</Link>
-          </li>
+          <ul>{user===null && (<>
+            <li className="nav-item dropdown">
+              <Link
+                className="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Categories
+              </Link>
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                {categories.map((item)=>(
+                <Link className="dropdown-item" to="/category1">{item.name}</Link>
+                  
+              ))}
+                
+               
+                {/* <div className="dropdown-divider"></div>
+                <Link className="dropdown-item" to="/all-categories">
+                  All Categories
+                </Link> */}
+              </div>
+            </li>
+          
+     
             <li>
               <Link to="/contact">Contact</Link>
-            </li> 
-                {/* <li>
+            </li>
+            {/* <li>
                   <Link to="/about">About</Link>
                 </li>
                 <li>

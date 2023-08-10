@@ -20,14 +20,17 @@ import ManageProduct from './pages/Admin/ManageProduct.jsx'
 import UpdateProduct from './pages/Admin/UpdateProduct.jsx'
 import Products from './pages/Admin/Products.jsx'
 import Searchitems from './pages/Searchitems.jsx'
-
+import ProductDetails from './pages/ProductDetails.jsx'
+import Category from './pages/Category.jsx'
+import Test from './pages/Test.jsx'
 function App() {
   return (
     <>
     <Routes> 
-      
-      {/* <Route exact path="/" element={< ProtectedRoute Component={Homepage} />} /> */}
-      <Route path='/' element={<Homepage/>}/>
+      <Route path='/test' element={<Test/>}/>
+      <Route exact path="/" element={<Homepage/>} />
+      <Route path='/category' element={<Category/>}/>
+      <Route path='/product-detail/:slug' element={<ProductDetails/>}/>
       <Route path="/dashboard" element={<ProtectedRoute> <Dashboard/></ProtectedRoute>} />
       <Route path='/contact' element={<Contact/>}/>
       {/* <Route path='/about' element={<About/>}/> */}

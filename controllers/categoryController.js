@@ -27,7 +27,7 @@ export const updateCategorycontroller=AsyncHandler(async(req,res)=>{
   else{
     throw new Error("error in updating category")
   }
-})
+});
 
 //get all category
 export const getCategory=AsyncHandler(async(req,res)=>{

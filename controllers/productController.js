@@ -141,4 +141,17 @@ export const searchProduct=AsyncHandler(async(req,res)=>{
     res.json(results);
   if(!results)
     throw new Error("no matching products found")
+});
+
+//fetch similar products
+export const relatedProduct=AsyncHandler(async(req,res)=>{
+  const {pid,cid}=req.params
+  const products=await productModel.find({
+    category:cid,
+    _id:{$ne:pid}                                    //notincluded pid
+  }).select("-photo").limit(7).populate("category")  //get products of same category excluding the current product
+  res.send({success:true,products})
+  if(!products){
+    throw new Error("no similar products")
+  }
 })

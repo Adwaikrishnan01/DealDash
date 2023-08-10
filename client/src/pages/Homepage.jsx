@@ -112,20 +112,20 @@ const Homepage = () => {
           <h1 className="text-center">All Products List</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (<>
-              <Link key={p._id} className="product-link" >
-                <div className="card m-2" style={{ width: "18rem" }}>
+                <div className="card m-2" key={p.id} style={{ width: "18rem" }} >
                   <img
                     src={`http://localhost:8000/api/v1/product/getphoto/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
                   />
-                  <div className="card-body">
+                  <div className="card-body" >
                     <h5 className="card-title" >{p.name}</h5>
                     <p className="card-text">{p.description.substring(0,29)}</p>
                     <p className="card-text">{p.price}</p>
+                    <button className='btn btn-info' onClick={()=>navigate(`/product-detail/${p.slug}`)}>view</button>
                   </div>
                 </div>
-              </Link></>
+              </>
             ))}
           </div>
         </div>
