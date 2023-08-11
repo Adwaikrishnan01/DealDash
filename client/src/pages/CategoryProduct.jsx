@@ -37,7 +37,9 @@ const CategoryProduct = () => {
                     <h5 className="card-title" >{p.name}</h5>
                     <p className="card-text">{p.description.substring(0,29)}</p>
                     <p className="card-text">{p.price}</p>
+                    <div className="col-md-12 d-flex justify-content-between">
                     <button className='btn btn-info' onClick={()=>navigate(`/product-detail/${p.slug}`)}>view</button>
+                    <button className='btn btn-primary'>Add to cart</button></div>
                   </div>
                 </div>
               </>

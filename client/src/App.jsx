@@ -24,6 +24,7 @@ import ProductDetails from './pages/ProductDetails.jsx'
 import Categories from './pages/Categories.jsx'
 import Test from './pages/Test.jsx'
 import CategoryProduct from './pages/CategoryProduct.jsx'
+import Cartlist from './pages/cartList.jsx'
 function App() {
   return (
     <>
@@ -35,6 +36,7 @@ function App() {
       <Route path='/category-products/:slug' element={<CategoryProduct/>}/>
       <Route path="/dashboard" element={<ProtectedRoute> <Dashboard/></ProtectedRoute>} />
       <Route path='/contact' element={<Contact/>}/>
+      <Route path='/cartlist' element={<Cartlist/>}/>
       {/* <Route path='/about' element={<About/>}/> */}
       <Route exact path="/about" element={< ProtectedRoute><About/></ProtectedRoute>}/>
       <Route path="/admindashboard" element={< ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>

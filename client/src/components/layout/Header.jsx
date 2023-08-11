@@ -107,7 +107,8 @@ function Header() {
               <Link to="/admindashboard">admindashboard</Link></li>)}
             {user?.role === 0 && (<><li><Link to="/">home</Link></li>
               <li><Link to="/orders">Orders</Link></li>
-              <li><Link to="/Category">Category</Link></li></>)}
+              <li><Link to="/Category">Category</Link></li>
+              <li><Link to="/cartlist">Cart</Link></li></>)}
             {user && <li> <Link to="/login">
               <button className="btn btn__login" onClick={() => dispatch(userLogout())}>Logout</button>
             </Link></li>}
