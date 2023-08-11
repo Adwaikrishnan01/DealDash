@@ -17,6 +17,7 @@ function Header() {
   console.log("hooke",categories)
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
+
   const [size, setSize] = useState({
     width: 0,
     height: 0,
@@ -69,8 +70,11 @@ function Header() {
                 Categories
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+              <Link className="dropdown-item" to="/all-categories">
+                  All Categories
+                </Link>
                 {categories.map((item)=>(
-                <Link className="dropdown-item" to="/category1">{item.name}</Link>
+                <Link className="dropdown-item" to={`/category-products/${item.slug}`}>{item.name}</Link>
                   
               ))}
                 

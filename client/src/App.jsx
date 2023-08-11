@@ -21,26 +21,28 @@ import UpdateProduct from './pages/Admin/UpdateProduct.jsx'
 import Products from './pages/Admin/Products.jsx'
 import Searchitems from './pages/Searchitems.jsx'
 import ProductDetails from './pages/ProductDetails.jsx'
-import Category from './pages/Category.jsx'
+import Categories from './pages/Categories.jsx'
 import Test from './pages/Test.jsx'
+import CategoryProduct from './pages/CategoryProduct.jsx'
 function App() {
   return (
     <>
     <Routes> 
       <Route path='/test' element={<Test/>}/>
       <Route exact path="/" element={<Homepage/>} />
-      <Route path='/category' element={<Category/>}/>
+      <Route path='/all-categories' element={<Categories/>}/>
       <Route path='/product-detail/:slug' element={<ProductDetails/>}/>
+      <Route path='/category-products/:slug' element={<CategoryProduct/>}/>
       <Route path="/dashboard" element={<ProtectedRoute> <Dashboard/></ProtectedRoute>} />
       <Route path='/contact' element={<Contact/>}/>
       {/* <Route path='/about' element={<About/>}/> */}
       <Route exact path="/about" element={< ProtectedRoute><About/></ProtectedRoute>}/>
       <Route path="/admindashboard" element={< ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
       <Route path='/policy' element={<ProtectedRoute><Policy/></ProtectedRoute>}/>
-      <Route path='/login' element={<PublicRoute><Login/></PublicRoute>}/>
+      <Route path='/login' element={<Login/>}/>
       <Route path='/forgotpassword' element={<Forgotpassword/>}/>
       <Route path='/search' element={<Searchitems/>}/>
-      <Route path='/register' element={<PublicRoute><Register/></PublicRoute>}/>
+      <Route path='/register' element={<Register/>}/>
       <Route path='/*' element={<Pagenotfound/>}/>
         <Route path='/admindashboard' element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
         <Route path='/admindashboard/users' element={<ProtectedRoute><Manageusers/></ProtectedRoute>}/>

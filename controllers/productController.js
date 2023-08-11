@@ -154,4 +154,13 @@ export const relatedProduct=AsyncHandler(async(req,res)=>{
   if(!products){
     throw new Error("no similar products")
   }
+});
+//get product based on category
+export const getCategoryProducts=AsyncHandler(async(req,res)=>{
+ const category=await categoryModel.findOne({slug:req.params.slug})
+ const products=await productModel.find({category}).populate("category")
+ res.send({success:true,products,category})
+ if(!products){
+  res.send({message:"no products found"})
+ }
 })

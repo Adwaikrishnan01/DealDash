@@ -1,5 +1,5 @@
 import express from 'express'
-import { createProduct, getProduct, getSingleProduct, productPhoto,deleteProduct,updateProduct, filterProduct, searchProduct, relatedProduct} from '../controllers/productController.js';
+import { createProduct, getProduct, getSingleProduct, productPhoto,deleteProduct,updateProduct, filterProduct, searchProduct, relatedProduct, getCategoryProducts} from '../controllers/productController.js';
 import formidable from 'express-formidable'
 
 
@@ -13,5 +13,6 @@ router.route('/updateproduct/:id').put(formidable(),updateProduct)
 router.route('/product-filter').post(filterProduct)
 router.route('/search-product/:keyword').get(searchProduct)
 router.route('/related-product/:pid/:cid').get(relatedProduct)
+router.route('/category-products/:slug').get(getCategoryProducts)
 
 export default router;
