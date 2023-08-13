@@ -101,7 +101,7 @@ function Header() {
               <button className="btn btn__login">Login</button>
             </Link><li><Link to="/register">
               <button className="btn ">Register</button>
-            </Link></li></>)}
+            </Link></li> <li><Link to="/cartlist">Cart</Link></li></>)}
 
             {user?.role === 1 && (<li>
               <Link to="/admindashboard">admindashboard</Link></li>)}

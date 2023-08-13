@@ -1,15 +1,18 @@
 import React from 'react'
 import {useEffect,useState} from 'react'
 import Layout from '../components/layout/Layout'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import { useNavigate,Link } from 'react-router-dom'
 import API from '../../services/API'
 import Spinner from 'react-bootstrap/Spinner';
 import { Checkbox, Radio } from 'antd'
 import { Prices } from '../components/Prices'
+import { addtocart } from '../components/Redux/cartSlice'
+import store from '../components/Redux/store'
 const Homepage = () => {
   const {loading,error,user}=useSelector((state)=>state.auth)
   const navigate=useNavigate()
+  const dispatch=useDispatch()
   console.log("selector working",user)
 
   const [products, setProducts] = useState([]);
@@ -84,7 +87,7 @@ const Homepage = () => {
             <div className='d-flex flex-column'>
               {category?.map((c)=>(
                 <Checkbox key={c.id} onChange={(e) => handleFilter(e.target.checked, c._id)}
-                >{c.name}</Checkbox>
+                >{c.name}</Checkbox>  
               ))}
             </div>
              <h4 className='test-center mt-4'>Filter by Price</h4>
@@ -124,7 +127,7 @@ const Homepage = () => {
                     <p className="card-text">{p.price}</p>
                     <div className="col-md-12 d-flex justify-content-between">
                     <button className='btn btn-info' onClick={()=>navigate(`/product-detail/${p.slug}`)}>view</button>
-                    <button className='btn btn-primary'>Add to cart</button></div>
+                    <button className='btn btn-primary' onClick={()=>{store.dispatch(addtocart(p))}}>Add to cart</button></div>
                   </div>
                 </div>
               </>
