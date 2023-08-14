@@ -115,3 +115,25 @@ export const login = AsyncHandler(async (req, res) => {
    }
 
   });
+  export const editUserProfile=AsyncHandler(async(req,res)=>{
+    const user = await userModel.findById(req.user._id);
+    const {name,email,address,phone}=req.body
+    if(!email){
+      throw new Error("Email required")
+    }
+    if(!name){
+      throw new Error("name required")
+    }
+    if(!address){
+      throw new Error("address required")
+    }
+    if(!phone){
+      throw new Error("Phone required")
+    }
+    const updateduser=await userModel.findByIdAndUpdate(user._id,{
+      name:name ||user.name,
+      email:email || user.email,
+      address: address || user.address,
+      phone:phone || user.phone},{new:true})
+    res.send({success:true, updateduser})
+    });

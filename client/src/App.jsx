@@ -11,7 +11,7 @@ import './App.css'
 import{Routes,Route} from 'react-router-dom'
 import Register from './pages/Auth/Register.jsx'
 import Forgotpassword from './pages/Auth/Forgotpassword.jsx'
-
+import UserHome from './pages/user/userHome.jsx'
 import AdminDashboard from './pages/Admin/admindashboard.jsx'
 import PublicRoute from './components/routes/PublicRoute.jsx'
 import Managecategory from './pages/Admin/Managecategory.jsx'
@@ -42,6 +42,8 @@ function App() {
       <Route path="/admindashboard" element={< ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
       <Route path='/policy' element={<ProtectedRoute><Policy/></ProtectedRoute>}/>
       <Route path='/login' element={<Login/>}/>
+      <Route path='/user/manageuser' element={<ProtectedRoute><UserHome/></ProtectedRoute>}/>
+
       <Route path='/forgotpassword' element={<Forgotpassword/>}/>
       <Route path='/search' element={<Searchitems/>}/>
       <Route path='/register' element={<Register/>}/>

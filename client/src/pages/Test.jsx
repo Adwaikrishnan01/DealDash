@@ -1,9 +1,34 @@
-import React from "react";
+import React,{useState} from "react";
 import { Link } from "react-router-dom";
 import { useCategory } from "../hooks/useCategory";
+import Avatar from "antd/es/avatar/avatar";
+
 
 const navbar=()=> {
    const seri=useCategory()
+   const User=()=>{
+    return(<li className="nav-item dropdown">
+    <Link
+      className="nav-link dropdown-toggle"
+      href="#"
+      id="navbarDropdown"
+      role="button"
+      data-bs-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+    <Avatar size={64} icon="client\public\vite.svg" />
+    </Link>
+    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+    <Link className="dropdown-item" to="/all-categories">
+       Logout
+      </Link>
+     
+
+    </div>
+  </li>)
+   
+   }
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -60,6 +85,7 @@ const navbar=()=> {
                 About
               </Link>
             </li>
+            <li><User/></li>
             {/* Add more menu items */}
           </ul>
         </div>

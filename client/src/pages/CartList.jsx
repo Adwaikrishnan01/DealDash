@@ -2,12 +2,13 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, decrement, removeItem } from '../components/Redux/cartSlice.jsx'
 import './Cartlist.scss'
-
+import { useNavigate } from 'react-router-dom'
 
 
 const Cartlist = () => {
 
   const dispatch = useDispatch();
+  const navigate=useNavigate()
   const { cartlist } = useSelector((state) => state.cart)
   const user = useSelector((state) => state.auth.user)
   console.log("cartlistitems", cartlist);
@@ -61,12 +62,16 @@ const Cartlist = () => {
     )
   }
   return (<>
-    <div className='cartlist-body'>{(!user)?<h5>Login to continue</h5>:
+    <div className='cartlist-body'>{(!user)?(<><h5>You have {cartlist.length} items in your cartlist </h5>
+    {cartlist.length>0 &&<button className='btn btn-info' onClick={()=>{navigate('/login')}}>Login to checkout</button>}</>):
     (<>{cartlist.length > 0 ? (<>{rendercart}
+    <div className='row'>
+      <h6>Shipping address</h6>
+      <p>{user?.address}</p>
+    </div>
       <h4>Ordery summery</h4>
       <Ordersummary cartlist={cartlist} />
       <button className='btn btn-secondary'>Pay</button></>) : <h5>your cart is empty</h5>}  </>)}
-
     </div>
   </>
   )

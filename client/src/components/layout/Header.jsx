@@ -7,6 +7,7 @@ import './Header.scss';
 import { userLogout } from '../Redux/authSlice';
 import Searchinput from '../Searchinput';
 import {useCategory} from '../../hooks/useCategory';
+import UserProfile from '../../pages/user/Profile';
 
 
 function Header() {
@@ -56,8 +57,7 @@ function Header() {
           className={`${"header__content__nav"} 
             ${menuOpen && size.width < 768 ? `${"isMenu"}` : ""} 
             }`}> <Searchinput />
-          <ul>{user===null && (<>
-            <li className="nav-item dropdown">
+          <ul> <li className="nav-item dropdown">
               <Link
                 className="nav-link dropdown-toggle"
                 href="#"
@@ -77,14 +77,9 @@ function Header() {
                 <Link className="dropdown-item" to={`/category-products/${item.slug}`}>{item.name}</Link>
                   
               ))}
-                
-               
-                {/* <div className="dropdown-divider"></div>
-                <Link className="dropdown-item" to="/all-categories">
-                  All Categories
-                </Link> */}
               </div>
-            </li>
+            </li>{user===null && (<>
+           
           
      
             <li>
@@ -105,10 +100,11 @@ function Header() {
 
             {user?.role === 1 && (<li>
               <Link to="/admindashboard">admindashboard</Link></li>)}
-            {user?.role === 0 && (<><li><Link to="/">home</Link></li>
+            {user?.role === 0 && (<>
               <li><Link to="/orders">Orders</Link></li>
-              <li><Link to="/Category">Category</Link></li>
-              <li><Link to="/cartlist">Cart</Link></li></>)}
+              <li><Link to="/cartlist">Cart</Link></li>
+              <UserProfile/>
+              </>)}
             {user && <li> <Link to="/login">
               <button className="btn btn__login" onClick={() => dispatch(userLogout())}>Logout</button>
             </Link></li>}
