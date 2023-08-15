@@ -7,6 +7,7 @@ import authRoutes from './router/authRoute.js'
 import cors from 'cors'
 import categoryRoutes from './router/categoryRoute.js';
 import productRoutes from './router/productRoute.js'
+import paymentRoutes from './router/paymentRoute.js'
 const app=express()
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(morgan('dev'));
 app.use("/api/v1/auth",authRoutes)
 app.use("/api/v1/category",categoryRoutes)
 app.use("/api/v1/product",productRoutes)
+app.use("/api/v1/payment",paymentRoutes)
 
 app.get('/',(req,res)=>{
     res.send('<p>Ecommerce app</p>');
