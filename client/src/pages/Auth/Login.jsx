@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import {useSelector,useDispatch} from 'react-redux'
-import { userLogin } from '../../components/Redux/authActions';
+import { getCurrentUser, userLogin } from '../../components/Redux/authActions';
 import store from '../../components/Redux/store';
 import './Auth.scss'
 import Layout from '../../components/layout/Layout.jsx';
@@ -24,6 +24,7 @@ const Login = () => {
           return alert("Please Provide All Fields");
         }
         store.dispatch(userLogin({ email, password}));
+       
          navigate('/')
         
         

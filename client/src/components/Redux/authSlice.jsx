@@ -59,13 +59,13 @@ const authSlice = createSlice({
   })
 }
 });
- export const searchSlice=createSlice({
-  name:'search',
-  initialState:{
-    searchedList:"term"
-  }
+//  export const searchSlice=createSlice({
+//   name:'search',
+//   initialState:{
+//     searchedList:"term"
+//   }
 
- })
+//  })
 
 export const { userLogout} = authSlice.actions;
 export default authSlice.reducer;

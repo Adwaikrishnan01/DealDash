@@ -1,6 +1,8 @@
 import express from 'express'
-import { braintreeToken } from '../controllers/paymentController'
+import { braintreePayment, braintreeToken } from '../controllers/paymentController.js'
+import { requireSignin } from '../middlewares/authmiddleware.js'
+
 const router=express.Router()
-router.route('/braintree/token').get(braintreeToken)
-//router.route('/braintree/payment').post(braintreePayment)
-export default router
+router.route('/braintree/token').get(requireSignin,braintreeToken)
+router.route('/braintree/payment').post(requireSignin,braintreePayment)
+export default router 

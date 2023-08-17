@@ -1,17 +1,46 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { increment, decrement, removeItem } from '../components/Redux/cartSlice.jsx'
 import './Cartlist.scss'
 import { useNavigate } from 'react-router-dom'
-
-
+import DropIn from "braintree-web-drop-in-react";
+import API from '../../services/API.jsx'
+import store from '../components/Redux/store.jsx'
+import { getCurrentUser } from '../components/Redux/authActions.jsx'
 const Cartlist = () => {
-
+   const [clientToken,setclientToken]=useState("")
+   const [instance,setInstance]=useState()
+   const [loading,setLoading]=useState(false)
   const dispatch = useDispatch();
   const navigate=useNavigate()
   const { cartlist } = useSelector((state) => state.cart)
   const user = useSelector((state) => state.auth.user)
   console.log("cartlistitems", cartlist);
+  //clientToken
+  const getToken=async(req,res)=>{
+    const {data}=await API.get("/api/v1/payment/braintree/token")
+    setclientToken(data?.clientToken)
+    console.log("clientToken",data)
+
+  }
+  const handlePayment=async()=>{
+    try{
+      setLoading(true)
+      const { nonce } = await instance.requestPaymentMethod();
+      const {data}=await API.post('/api/v1/payment/braintree/payment',{nonce,cartlist})
+      setLoading(false)
+      alert("payment completed successfully")
+    }catch(error){   
+      console.log(error)
+      setLoading(false)
+    }
+  }
+  useEffect(()=>{
+    getToken()
+  },[user])
+  useEffect(()=>{
+   store.dispatch(getCurrentUser())
+  },[])
   const rendercart = cartlist.map((item) => {
     return (
       <div className='cartlist-container' key={item._id}>
@@ -69,9 +98,20 @@ const Cartlist = () => {
       <h6>Shipping address</h6>
       <p>{user?.address}</p>
     </div>
-      <h4>Ordery summery</h4>
+      <h4>Order summery</h4>
       <Ordersummary cartlist={cartlist} />
-      <button className='btn btn-secondary'>Pay</button></>) : <h5>your cart is empty</h5>}  </>)}
+      <div> {!clientToken?"loading.....":<DropIn
+                      options={{
+                        authorization: clientToken,
+                        paypal: {
+                          flow: "vault",
+                        },
+                      }}
+                      onInstance={(instance) => setInstance(instance)}/>}
+       </div>  
+     
+      <button className='btn btn-secondary' onClick={handlePayment}
+      disabled={loading || !instance || !user?.address}>{loading?"Processing":"Pay"}</button></>) : <h5>your cart is empty</h5>}  </>)}
     </div>
   </>
   )

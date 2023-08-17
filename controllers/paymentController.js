@@ -28,11 +28,11 @@ var gateway = new braintree.BraintreeGateway({
       console.log(error);
     }
   };
-  export const brainTreePaymentController = async (req, res) => {
+  export const braintreePayment = async (req, res) => {
     try {
-      const { nonce, cart } = req.body;
+      const { nonce, cartlist } = req.body;
       let total = 0;
-      cart.map((i) => {
+      cartlist.map((i) => {
         total += i.price;
       });
       let newTransaction = gateway.transaction.sale(
@@ -46,7 +46,7 @@ var gateway = new braintree.BraintreeGateway({
         function (error, result) {
           if (result) {
             const order = new orderModel({
-              products: cart,
+              products: cartlist,
               payment: result,
               buyer: req.user._id,
             }).save();

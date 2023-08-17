@@ -9,6 +9,7 @@ import { Checkbox, Radio } from 'antd'
 import { Prices } from '../components/Prices'
 import { addtocart } from '../components/Redux/cartSlice'
 import store from '../components/Redux/store'
+import { getCurrentUser } from '../components/Redux/authActions'
 const Homepage = () => {
   const {loading,error,user}=useSelector((state)=>state.auth)
   const navigate=useNavigate()
@@ -41,6 +42,7 @@ const Homepage = () => {
       
         //lifecycle method
         useEffect(() => {
+          
           getAllCategory()
           getAllProducts();
           
