@@ -42,7 +42,10 @@ const Homepage = () => {
       
         //lifecycle method
         useEffect(() => {
-          
+          const token=localStorage.getItem("token")
+          if(token){
+            store.dispatch(getCurrentUser())
+          }
           getAllCategory()
           getAllProducts();
           

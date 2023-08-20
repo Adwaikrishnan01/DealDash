@@ -2,6 +2,7 @@ import AsyncHandler from 'express-async-handler'
 import productModel from '../models/productModel.js'
 import slugify from "slugify";
 import categoryModel from '../models/categoryModel.js';
+import orderModel from '../models/orderModel.js'
 import dotenv from 'dotenv'
 import fs from 'fs'
 
@@ -163,4 +164,20 @@ export const getCategoryProducts=AsyncHandler(async(req,res)=>{
  if(!products){
   res.send({message:"no products found"})
  }
+})
+//get users ordered products
+export const getOrderedProduct=AsyncHandler(async(req,res)=>{
+  const orders = await orderModel
+  .find({buyer:req.user._id})
+  .populate("products","-photo")
+  .populate("buyer","name")
+  .sort({ createdAt: -1 });
+   res.send({
+  success: true,
+  counTotal:orders.length,
+  orders,
+});
+if(!orders){
+  throw new Error("Error in getting orders")
+}
 })

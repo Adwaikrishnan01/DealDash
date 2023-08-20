@@ -11,7 +11,7 @@ import './App.css'
 import{Routes,Route} from 'react-router-dom'
 import Register from './pages/Auth/Register.jsx'
 import Forgotpassword from './pages/Auth/Forgotpassword.jsx'
-import UserHome from './pages/user/userHome.jsx'
+import UserHome from './pages/user/UserHome.jsx'
 import AdminDashboard from './pages/Admin/admindashboard.jsx'
 import PublicRoute from './components/routes/PublicRoute.jsx'
 import Managecategory from './pages/Admin/Managecategory.jsx'
@@ -25,6 +25,7 @@ import Categories from './pages/Categories.jsx'
 import Test from './pages/Test.jsx'
 import CategoryProduct from './pages/CategoryProduct.jsx'
 import Cartlist from './pages/cartList.jsx'
+import Userorders from './pages/user/Userorders.jsx'
 function App() {
   return (
     <>
@@ -37,6 +38,7 @@ function App() {
       <Route path="/dashboard" element={<ProtectedRoute> <Dashboard/></ProtectedRoute>} />
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/cartlist' element={<Cartlist/>}/>
+      <Route exact path="/user/orders" element={< ProtectedRoute><Userorders/></ProtectedRoute>}/>
       {/* <Route path='/about' element={<About/>}/> */}
       <Route exact path="/about" element={< ProtectedRoute><About/></ProtectedRoute>}/>
       <Route path="/admindashboard" element={< ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>

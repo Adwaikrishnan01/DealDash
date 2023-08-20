@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
 import { useSelector,useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate ,Link} from 'react-router-dom'
 import Layout from '../../components/layout/Layout'
 import API from '../../../services/API'
 import store from '../../components/Redux/store'
 import { getCurrentUser } from '../../components/Redux/authActions'
 const UserHome = () => {
 const user=useSelector((state)=>state.auth.user)
+// const [user,setUser]=useState({})
+// setUser(getCurrentUser())
 const dispatch=useDispatch()
 const [toggle,setToggle]=useState(false)
 const Edituser=()=>{
+  
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
@@ -29,6 +32,9 @@ const Edituser=()=>{
    }catch(error){
        console.log(error)}
     }
+     useEffect(()=>{
+  
+      },[])
     return(<div className='outer-container'><form onSubmit={handleupdate}>
     <div className='login-container'>
       <input className='name' placeholder='Name' value={name} onChange={(e) => setName(e.target.value)}></input>
@@ -41,13 +47,13 @@ const Edituser=()=>{
 }
   return (
   <Layout>
-  <div className='container-fluid mt-3 ' style={{height:"100vh"}}> 
-  <div className='row md-12 align-items-center row-height-100vh'><div className='col col-height-100vh'>
-        Orders</div>
-    <div className='col'><div className='row'>
+  <div className='container-fluid  ' style={{height:"100vh"}}> 
+  <div className='row md-12 ' ><div className='col-md-4 vh-100 bg-secondary'>
+  <p className='m-4 bg-dark text-center p-2 '><Link to="/user/orders" class="link-info link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover">Orders</Link></p></div>
+    <div className='col vh-100'><div className='row'>
   <div className="col-md-12 ">
-    <h3 className='text-start'>Welcome {user.name}</h3>
-    {toggle?  <Edituser/>:(<><p className='text-start offset-1'>email: {user.email}</p>
+    <h3 className='text-start'>Welcome {user?.name}</h3>
+    {toggle?  <Edituser/>:(<><p className='text-start offset-1'>email: {user?.email}</p>
     <p className='text-start offset-1'>phone: {user.phone}</p>
     <p className='text-start offset-1'>address: {user?.address}</p></>)}
   </div>

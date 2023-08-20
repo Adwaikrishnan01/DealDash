@@ -5,9 +5,6 @@ import productModel from "../models/productModel.js";
 import categoryModel from "../models/categoryModel.js";
 import orderModel from "../models/orderModel.js";
 
-import fs from "fs";
-import slugify from "slugify";
-
 dotenv.config()
 var gateway = new braintree.BraintreeGateway({
     environment: braintree.Environment.Sandbox,
@@ -31,14 +28,19 @@ var gateway = new braintree.BraintreeGateway({
   export const braintreePayment = async (req, res) => {
     try {
       const { nonce, cartlist } = req.body;
+      // const itemIds = cartlist.map(item => item._id)
+      // const objectIds = itemIds.map(id =>new mongoose.Types.ObjectId(id));
+      // console.log("id of itens",itemIds)
+      //  const fullProductDetails = await productModel.find({ _id: { $in: objectIds } }).select("-photo");
+      //  console.log("Full product details", fullProductDetails);
       let total = 0;
       cartlist.map((i) => {
-        total += i.price;
+        total += i.price*i.count;
       });
       let newTransaction = gateway.transaction.sale(
         {
           amount: total,
-          paymentMethodNonce: nonce,
+          paymentMethodNonce: nonce,  
           options: {
             submitForSettlement: true,
           },
@@ -50,8 +52,9 @@ var gateway = new braintree.BraintreeGateway({
               payment: result,
               buyer: req.user._id,
             }).save();
+           
             res.json({ ok: true });
-          } else {
+        } else {
             res.status(500).send(error);
           }
         }
