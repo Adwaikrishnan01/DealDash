@@ -50,7 +50,7 @@ function Header() {
   return (
     <header className="header">
       <div className="header__content">
-        <Link to="/" className="header__content__logo">
+        <Link to="/" className="header__content__logo" style={{marginRight:"8px"}}>
           DealDash
         </Link>
         <nav
@@ -98,17 +98,17 @@ function Header() {
               <button className="btn ">Register</button>
             </Link></li> <li><Link to="/cartlist">Cart</Link></li></>)}
 
-            {user?.role === 1 && (<li>
-              <Link to="/admindashboard">admindashboard</Link></li>)}
+            {user?.role === 1 && (<><li>
+              <Link to="/admindashboard">admindashboard</Link></li>
+                <li> <button className="btn"  onClick={() => dispatch(userLogout())}>
+       Logout
+      </button></li></>)}
             {user?.role === 0 && (<>
               <li><Link to="/orders">Orders</Link></li>
               <li><Link to="/cartlist">Cart</Link></li>
               <UserProfile/>
               </>)}
-            {user && <li> <Link to="/login">
-              <button className="btn btn__login" onClick={() => dispatch(userLogout())}>Logout</button>
-            </Link></li>}
-
+         
           </ul>
 
         </nav>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from '../../components/layout/Layout'
 import { Link } from "react-router-dom";
 import API from "../../../services/API";
+import Sidebar from "./components/Sidebar";
 const Products = () => {
  
         const [products, setProducts] = useState([]);
@@ -24,9 +25,10 @@ const Products = () => {
 
   return (
    <Layout title='Product list'>
-    <div className="row dashboard">
-        <div className="col-md-3">
-        
+    
+    <div className="admindashboard">
+        <div className="col-md-3" style={{height:"100vh"}}>
+        <Sidebar/>
         </div>
         <div className="col-md-9 ">
           <h1 className="text-center">All Products List</h1>
@@ -41,11 +43,11 @@ const Products = () => {
                   <img
                     src={`http://localhost:8000/api/v1/product/getphoto/${p._id}`}
                     className="card-img-top"
-                    alt={p.name}
+                    alt={p.name} style={{maxHeight:"250px",maxwidth:"130px"}}
                   />
                   <div className="card-body">
                     <h5 className="card-title" >{p.name}</h5>
-                    <p className="card-text">{p.description}</p>
+                    <p className="card-text">{p.description.substring(0,29)}</p>
                   </div>
                 </div>
               </Link>

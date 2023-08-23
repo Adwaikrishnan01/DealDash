@@ -57,7 +57,7 @@ const handleCreate=async()=>{
   return (
    <Layout title='Create Product'>
     <div className='admindashboard'>
-      <Sidebar />
+    <div className='col-md-3' style={{height:"100vh"}}> <Sidebar/></div>
       <div className='manage-cat-container'>
       <div className="col-md-9">
             <h1>Create Product</h1>

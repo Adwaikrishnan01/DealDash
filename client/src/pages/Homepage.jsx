@@ -124,7 +124,7 @@ const Homepage = () => {
                   <img
                     src={`http://localhost:8000/api/v1/product/getphoto/${p._id}`}
                     className="card-img-top"
-                    alt={p.name}
+                    alt={p.name} style={{maxHeight:"250px",maxwidth:"130px"}}
                   />
                   <div className="card-body" >
                     <h5 className="card-title" >{p.name}</h5>

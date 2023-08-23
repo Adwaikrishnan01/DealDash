@@ -1,8 +1,11 @@
 import React from "react"
 import {Link} from 'react-router-dom'
 import { Avatar } from "antd"
+import { userLogout } from '../../components/Redux/authSlice';
+import { useSelector, useDispatch } from 'react-redux'
 import { UserOutlined } from '@ant-design/icons';
 const UserProfile=()=>{
+  const dispatch = useDispatch();
     return(<li className="nav-item dropdown">
     <Link
       className="nav-link dropdown-toggle"
@@ -16,9 +19,9 @@ const UserProfile=()=>{
      <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />  
   </Link>
     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-    <Link className="dropdown-item" to="/login">
+    <button className="dropdown-item"  style={{padding:"10px"}}onClick={() => dispatch(userLogout())}>
        Logout
-      </Link>
+      </button>
       <Link className="dropdown-item" to="/user/manageuser">
        Profile
       </Link>

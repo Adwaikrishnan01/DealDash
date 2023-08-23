@@ -87,7 +87,7 @@ const Managecategory = () => {
 return (
   <Layout>
     <div className='admindashboard'>
-      <Sidebar />
+    <div className='col-md-3' style={{height:"100vh"}}> <Sidebar/></div>
       <div className='manage-cat-container'>
         <div className='add-category'>
           <CategoryForm

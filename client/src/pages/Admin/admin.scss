@@ -1,61 +1,123 @@
-.admindashboard{
-   display:flex;
-   width:100%;
+@mixin breakpoint($point) {
+  @if $point ==md {
 
-.sidebar {
-    height: 80vh;
+    // 768px
+    @media (width< 48em) {
+      @content;
+    }
+  }
+}
+
+.admindashboard {
+  display: flex;
+  width: 100%;
+ 
+
+  @include breakpoint(md) {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    height: 100%;
     width: 230px;
     background-color: #333;
     padding: 20px;
-    top:100px;
-    display:inline-block;
+    top: 100px;
+    display: inline-block;
+
+    @include breakpoint(md) {
+      background-color: #e1e1e1;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      padding: 10px;
+      flex: 1;
+      height: 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
-  
-  .sidebar h2 {
-    margin-bottom: 20px;
+
+  .sidebar ul {
+    @include breakpoint(md) {
+      display: flex;
+      flex:1;
+      justify-content: space-around;
+      align-items: center;
+      margin-bottom:0px
+    }
   }
-  
+
+  .sidebar li {
+    @include breakpoint(md) {
+
+
+      
+    }
+  }
+
   .sidebar a {
+    border-radius: 10px;
     color: white;
     text-decoration: none;
     display: block;
     padding: 10px;
     transition: background-color 0.2s;
+    @include breakpoint(md) {
+      color: blueviolet;
+     
+    }
   }
-  
   .sidebar a:hover {
     background-color: #555;
-  }
- .admin-dash-content{
-    display:grid;
-    grid-template-columns: auto auto ;
-    margin-left: 1em;
-    margin-top: 3em;
-    gap: 1em;
+    border-style:inset 1px solid blueviolet;
    
-   }
-  .grid-items{
-    text-align:center;
-    border: 1px solid rgba(0, 0, 0, 0.8);
-    border-radius: 3px;
-    box-shadow: inset;
-    padding: 20px;
-     font-size: 20px;
-  
-  }
-.manage-cat-container{
-  padding:20px 10px;
-  display:block;
-   width:100%;
-  justify-content: center;
+    @include breakpoint(md) {
+      color:rgb(73, 127, 235);
+      background-color: #cecece;
 
-   .add-category{
-    display: flex;
-     width:50%;
-      height:80px;
+    }
+  }
+ 
+  .admin-dash-content {
+    margin-top:3em;
+    margin-bottom:3em;
+    width:100%;
+    align-content: space-evenly;
+    display: grid;
+    row-gap: 3em;
+    grid-template-columns: auto auto;
+    justify-content: space-evenly;
+ 
+
+  }
+
+  .grid-items {
+    text-align: center;
+    border-radius: 3px;
+    padding: 20px;
+    font-size: 20px;
+    background-color: #dcdcdc;
+    height:100%;
+
+    .list-group-item{
+      font-size: 15px;
+    }
+  }
+
+  .manage-cat-container {
+    padding: 20px 10px;
+    display: block;
+    width: 100%;
+    justify-content: center;
+
+    .add-category {
+      display: flex;
+      width: 50%;
+      height: 80px;
       align-items: center;
       justify-content: space-between;
-}
-}
+    }
+  }
 
-} 
+}
