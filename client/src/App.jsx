@@ -52,7 +52,7 @@ function App() {
       <Route path='/*' element={<Pagenotfound/>}/>
         <Route path='/admindashboard' element={<ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
         <Route path='/admindashboard/users' element={<ProtectedRoute><Manageusers/></ProtectedRoute>}/>
-        <Route path='/admindashboard/category' element={<ProtectedRoute><Managecategory/></ProtectedRoute>}/>
+        <Route path='/dashboard/admin/categories' element={<ProtectedRoute><Managecategory/></ProtectedRoute>}/>
         <Route path='/admindashboard/products' element={<ProtectedRoute><ManageProduct/></ProtectedRoute>}/>
         <Route path='/dashboard/admin/product' element={<ProtectedRoute><Products/></ProtectedRoute>}/>
         <Route path='/dashboard/admin/product/:slug' element={<ProtectedRoute><UpdateProduct/></ProtectedRoute>}/>

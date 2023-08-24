@@ -3,10 +3,13 @@ import Layout from '../components/layout/Layout'
 import API from '../../services/API'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
-
+import { addtocart } from '../components/Redux/cartSlice'
+import store from '../components/Redux/store'
+import { useDispatch } from 'react-redux'
 const ProductDetails = () => {
  
     const [product,setProduct]=useState({})
+    const dispatch=useDispatch()
     const [similarProd,setsimilarProd]=useState([])
     console.log(";;;",product)
     const params=useParams();
@@ -56,7 +59,7 @@ const ProductDetails = () => {
           
         </div>
         <div className='col-md-3'>
-          <button className="btn btn-dark mt-5">Add to Cart</button></div>
+          <button className="btn btn-dark mt-5" onClick={()=>{store.dispatch(addtocart(product))}}>Add to Cart</button></div>
       </div>
       <div className="container mt-4">
       <h5 className='text-left'>Similar products</h5>{similarProd.length===0 &&<p>no similar products found</p>}
@@ -72,7 +75,7 @@ const ProductDetails = () => {
               <div className="card-body">
                 <h5 className="card-title">{pd.name}</h5>
                 <p className="text-muted">$ {pd.price}</p>
-                <button className="btn btn-dark mt-1">Add to Cart</button>
+                <button className="btn btn-dark mt-1" onClick={()=>{store.dispatch(addtocart(pd))}}>Add to Cart</button>
               </div>
             </div>
           </div>

@@ -82,7 +82,6 @@ const Homepage = () => {
   
   return (
     <Layout title={'DealDash-home'}>
-
         {user?.role===1 && navigate('/admindashboard')}
         {error && <span>{alert(error)}</span>}
         {loading? (<Spinner/>):(<>
