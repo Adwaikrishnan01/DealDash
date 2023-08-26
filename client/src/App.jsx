@@ -56,6 +56,7 @@ function App() {
         <Route path='/admindashboard/products' element={<ProtectedRoute><ManageProduct/></ProtectedRoute>}/>
         <Route path='/dashboard/admin/product' element={<ProtectedRoute><Products/></ProtectedRoute>}/>
         <Route path='/dashboard/admin/product/:slug' element={<ProtectedRoute><UpdateProduct/></ProtectedRoute>}/>
+        <Route path='/dashboard/admin/users' element={<ProtectedRoute><Manageusers/></ProtectedRoute>}/>
       </Routes>
       
       

@@ -137,3 +137,36 @@ export const login = AsyncHandler(async (req, res) => {
       phone:phone || user.phone},{new:true})
     res.send({success:true, updateduser})
     });
+
+    //getallusers
+    export const getallUsers=AsyncHandler(async(req,res)=>{
+      try {
+        const users = await userModel.find({}); 
+        if (!users) {
+          throw new Error("cannot find any users");
+        }
+        res.send({ message: true, users });
+      } catch (error) {
+        res.status(500).send({ message: false, error: error.message });
+      }
+    });
+    export const deleteUser=AsyncHandler(async(req,res)=>{
+      try{
+        const id = req.params.id;
+       await userModel.findByIdAndDelete(id)
+         res.send({success:true,message:"user deleted successfully"})
+      }catch(error){
+        res.status(500).send(error);
+      }
+    })
+    //update username
+    export const updateUser=AsyncHandler(async(req,res)=>{
+      try{
+        const {id}=req.params
+        const {name}=req.body
+        const updateduser=await userModel.findByIdAndUpdate(id,{name:name},{new:true})
+         res.send({success:true,updateduser})
+      }catch(error){
+        res.status(500).send(error);
+      }
+    })

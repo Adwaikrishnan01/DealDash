@@ -57,10 +57,10 @@ const handleCreate=async()=>{
   return (
    <Layout title='Create Product'>
     <div className='admindashboard'>
-    <div className='col-md-3' style={{height:"100vh"}}> <Sidebar/></div>
-      <div className='manage-cat-container'>
-      <div className="col-md-9">
-            <h1>Create Product</h1>
+    <div className='col-md-3' > <Sidebar/></div>
+      <div className='manage-cat-container' style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+      <div className="col-md-9 col-sm-12 ">
+            <h1 className='center'>Create Product</h1>
             <div className="m-1 w-75">
               <Select
                 bordered={false}

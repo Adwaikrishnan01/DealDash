@@ -51,7 +51,7 @@ const Managecategory = () => {
   //Delete
   const handleDelete = async (id) => {
     try {
-      await API.delete(`api/v1/category/deletecategory/${id}`)
+      await API.delete(`/api/v1/category/deletecategory/${id}`)
       alert("category deleted")
       getallCategory();
 
@@ -79,7 +79,7 @@ const Managecategory = () => {
   console.log("categorylist", category)
   
   useEffect(() => {
-    getallCategory();
+    getallCategory(); 
   }, []);
 
 
@@ -87,7 +87,7 @@ const Managecategory = () => {
 return (
   <Layout>
     <div className='admindashboard'>
-    <div className='col-md-3' style={{height:"100vh"}}> <Sidebar/></div>
+    <div className='sidebar-height' ><Sidebar/></div> 
       <div className='manage-cat-container'>
         <div className='add-category'>
           <CategoryForm
@@ -95,7 +95,7 @@ return (
             value={name}
             setValue={setName}
           /></div>
-        <div className='category-table'>
+        <div className='category-table' style={{marginTop:"40px"}}>
           {/* <TableComponent props={category} header={header} />  */}
           <table className="table">
             <thead>

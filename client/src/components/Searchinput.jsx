@@ -12,7 +12,7 @@ const Searchinput = () => {
     e.preventDefault()
     console.log("searchterm", searchTerm)
     store.dispatch(updateString(searchTerm));
-      //< Navigate to='/search'/>
+     
      navigate('/search')
 
   }

@@ -13,7 +13,7 @@ const AdminDashboard = () => {
   return (<>
     <Layout title='admin-dashboard'>
      <div className='admindashboard'>
-     <div className="col-md-3" style={{height:"150vh"}} >
+     <div   >
         <Sidebar/>
         </div>
     <div className='admin-dash-content'>
@@ -37,12 +37,9 @@ const AdminDashboard = () => {
   <img src="/group.png" className="card-img-top" alt="..." style={{maxHeight:"200px"}} />
   <div className="card-body">
     <h5 className="card-title">Users</h5>
-   
   </div>
   <ul className="list-group list-group-flush">
     <li className="list-group-item">Total users : </li>
-
-   
   </ul>
   
 </div>
@@ -59,8 +56,6 @@ const AdminDashboard = () => {
   </div>
   <ul className="list-group list-group-flush">
     <li className="list-group-item">Total categories : </li>
-
-   
   </ul>
   
 </div></div>
