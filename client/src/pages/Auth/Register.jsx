@@ -52,7 +52,7 @@ function Register() {
           <input className='phone' placeholder='Phone number' value={phone} onChange={(e) => setPhone(e.target.value)}></input>
           <input className='address' placeholder='Address' value={address} onChange={(e) => setAddress(e.target.value)}></input>
           <input className='sport' placeholder='Enter your favourite sport' value={answer} onChange={(e) => setAnswer(e.target.value)}></input>
-          <button className='register' type="submit">Register</button>
+          <button className='button-31' type="submit">Register</button>
         </div></form>
       </div>
     </Layout>

@@ -7,13 +7,12 @@ import Login from './pages/Auth/Login.jsx'
 import Pagenotfound from './pages/Pagenotfound.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import ProtectedRoute from './components/routes/ProtectedRoute.jsx'
-import './App.css'
+import './App.scss'
 import{Routes,Route} from 'react-router-dom'
 import Register from './pages/Auth/Register.jsx'
 import Forgotpassword from './pages/Auth/Forgotpassword.jsx'
 import UserHome from './pages/user/UserHome.jsx'
 import AdminDashboard from './pages/Admin/admindashboard.jsx'
-import PublicRoute from './components/routes/PublicRoute.jsx'
 import Managecategory from './pages/Admin/Managecategory.jsx'
 import Manageusers from './pages/Admin/Manageusers.jsx'
 import ManageProduct from './pages/Admin/ManageProduct.jsx'
@@ -39,8 +38,8 @@ function App() {
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/cartlist' element={<Cartlist/>}/>
       <Route exact path="/user/orders" element={< ProtectedRoute><Userorders/></ProtectedRoute>}/>
-      {/* <Route path='/about' element={<About/>}/> */}
       <Route exact path="/about" element={< ProtectedRoute><About/></ProtectedRoute>}/>
+      <Route exact path="/orders" element={< ProtectedRoute><Userorders/></ProtectedRoute>}/>
       <Route path="/admindashboard" element={< ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
       <Route path='/policy' element={<ProtectedRoute><Policy/></ProtectedRoute>}/>
       <Route path='/login' element={<Login/>}/>

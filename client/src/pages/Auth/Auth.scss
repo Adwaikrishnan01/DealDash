@@ -5,13 +5,16 @@
 
     .login-container{
     display:flex;
+  
+    background-color: #f6f6f6;
     flex-direction:column;
     width:24em;
     padding:4em .5em;
     align-items: center;
-    margin:40px 20px;
+    margin-top:90px;
      border:2px solid;
-    border-radius:20px;
+    border-radius:5px;
+    box-shadow: 10px 10px 8px #888888;
     input {
         padding: 10px;
         font-size: 16px;
@@ -26,16 +29,17 @@
         border-color: #007bff;
         box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
       }
-    button{
+    .button-31{
         margin:.7em;
         display: inline-block;
         padding: 10px 20px;
+            width:256px;
          font-size: 16px;
             font-weight: bold;
          text-align: center;
         text-decoration: none;
           border: none;
-            border-radius: 15px;
+            border-radius: 4px;
             background-color:black;
             color: #fff;
             cursor: pointer;
@@ -54,6 +58,8 @@
             transform: translateY(1px);
           }
     }
+ 
+
     &__newaccount{
        margin-top: 1.5em;
        .button{

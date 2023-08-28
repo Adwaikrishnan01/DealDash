@@ -43,13 +43,13 @@ const ProductDetails = () => {
   return (
     <Layout title='product-detail'>
        
-        <div className="container mt-5">
+        <div className="row md-12 m-4">
       <div className="row">
         <div className="col-md-6">
           <img
             src={`http://localhost:8000/api/v1/product/getphoto/${product._id}`}
             alt={product.name}
-            className="img-fluid rounded shadow"
+            className="img-fluid rounded shadow" style={{maxWidth:"350px"}}
           />
         </div>
         <div className="col-md-6">
@@ -61,16 +61,16 @@ const ProductDetails = () => {
         <div className='col-md-3'>
           <button className="btn btn-dark mt-5" onClick={()=>{store.dispatch(addtocart(product))}}>Add to Cart</button></div>
       </div>
-      <div className="container mt-4">
+      <div className="row md-12 my-3" >
       <h5 className='text-left'>Similar products</h5>{similarProd.length===0 &&<p>no similar products found</p>}
-      <div className="row flex-nowrap overflow-auto">
+      <div className="row flex-nowrap " >
         {similarProd.map(pd => (
-          <div key={pd.id} className="col-md-4 mb-4">
-            <div className="card">
+          <div key={pd.id} className="col-md-4 mb-4" style={{height:"320px",width:"230px"}}>
+            <div className="card" >
               <img
                 src={`http://localhost:8000/api/v1/product/getphoto/${pd._id}`}
                 alt={pd.name}
-                className="card-img-top"
+                className="card-img-top" style={{height:"250px",maxWidth:"200px",objectFit:"contain"}}
               /> 
               <div className="card-body">
                 <h5 className="card-title">{pd.name}</h5>

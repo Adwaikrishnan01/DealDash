@@ -13,11 +13,11 @@ import UserProfile from '../../pages/user/Profile';
 function Header() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth).user
-  console.log("user in header", user)
   const categories = useCategory()
-  console.log("hooke",categories)
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
+  const cart=useSelector(state=>state.cart)
+  const [cartLength,setLength]=useState('')
 
   const [size, setSize] = useState({
     width: 0,
@@ -45,6 +45,11 @@ function Header() {
   const menuToggleHandler = () => {
     setMenuOpen((p) => !p);
   };
+
+  useEffect(() => {
+    setLength(cart.cartlist.length);
+  }, [cart]);
+
 
 
   return (
@@ -82,13 +87,11 @@ function Header() {
            
           
      
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-            {/* <li>
+            
+             <li>
                   <Link to="/about">About</Link>
                 </li>
-                <li>
+                {/*<li>
                   <Link to="/policy">Policy</Link>
                 </li> */}
 
@@ -105,7 +108,8 @@ function Header() {
       </button></li></>)}
             {user?.role === 0 && (<>
               <li><Link to="/orders">Orders</Link></li>
-              <li><Link to="/cartlist">Cart</Link></li>
+              <li><Link to="/cartlist">Cart<span 
+              className="position-absolute top-1 translate-middle badge p-1 bg-danger rounded-circle">{cartLength}</span></Link> </li>
               <UserProfile/>
               </>)}
          

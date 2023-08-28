@@ -10,20 +10,18 @@ export const userLogin = createAsyncThunk(
       
       console.log("email and pass in userlogin",email,password)
       try {
-        const { data } = await API.post("/api/v1/auth/login", {  email, password });    //response.data
-        console.log(data)
+        const { data } = await API.post("/api/v1/auth/login", {  email, password });    
+    
         
         //store token
         if (data.token) {
           alert("logged in");
-          // const userinfo=JSON.stringify(data)
-          // localStorage.setItem("userinfo",userinfo);  
           localStorage.setItem("token", data.token);
            //store.dispatch(getCurrentUser())
         }else{
-          alert(data.message)
+          alert("Error in logging in")
         }
-         console.log("the data which is going to be storeed in the store",data)
+        
           return data;
       } catch (error) {
         if (error.response && error.response.data.message) {
@@ -37,11 +35,11 @@ export const userLogin = createAsyncThunk(
    export const getCurrentUser=createAsyncThunk('user/getCurrentUser',async(_,{rejectWithValue})=>{
         try{
           const {data}=await API.get('/api/v1/auth/currentuser')
-          console.log("datafinal",data)
+         
           if(data)
            return data;
         }catch(error){
-          console.log(error)
+        
           if (error.response && error.response.data.message) {
             return rejectWithValue(error.response.data.message);
           } else {
@@ -56,7 +54,7 @@ export const userLogin = createAsyncThunk(
                 alert("user registerd successfully!!!!!")
               }
     }catch(error){
-      console.log(error)
+    
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {

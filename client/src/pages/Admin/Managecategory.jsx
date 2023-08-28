@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from './components/Sidebar.jsx'
 import Layout from '../../components/layout/Layout.jsx'
-//import TableComponent from './components/Table.jsx';
+
 import CategoryForm from '../../components/form/categoryForm.jsx';
 import API from '../../../services/API.jsx';
 import { useState, useEffect } from 'react'

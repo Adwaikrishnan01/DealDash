@@ -14,8 +14,6 @@ const Homepage = () => {
   const {loading,error,user}=useSelector((state)=>state.auth)
   const navigate=useNavigate()
   const dispatch=useDispatch()
-  console.log("selector working",user)
-
   const [products, setProducts] = useState([]);
   const [category,setCategory]=useState([])
   const[checked,setChecked]=useState([])
@@ -79,12 +77,12 @@ const Homepage = () => {
       useEffect(() => {
         if (checked?.length || radio?.length) filteredProducts();
       }, [checked, radio]);
-  
+    
   return (
     <Layout title={'DealDash-home'}>
         {user?.role===1 && navigate('/admindashboard')}
-        {error && <span>{alert(error)}</span>}
-        {loading? (<Spinner/>):(<>
+        
+        {loading? (<div className='text-center'><Spinner/></div>):(<>
         <div className='container-fluid row mt-3 home-page'>
           <div className='col mt-3 filters'>
             <h4 className='test-center'>Filter by category</h4>
@@ -116,21 +114,22 @@ const Homepage = () => {
          
     
         <div className="col-md-9 ">
-          <h1 className="text-center">All Products List</h1>
+        
           <div className="d-flex flex-wrap">
             {products?.map((p) => (<>
                 <div className="card m-2" key={p.id} style={{ width: "18rem" }} >
+                <Link to={`/product-detail/${p.slug}`} className="list-group-item list-group-item-action">
                   <img
                     src={`http://localhost:8000/api/v1/product/getphoto/${p._id}`}
                     className="card-img-top"
-                    alt={p.name} style={{maxHeight:"250px",maxwidth:"130px"}}
-                  />
+                    alt={p.name} style={{height:"280px",maxwidth:"130px"}}
+                  /></Link>
                   <div className="card-body" >
                     <h5 className="card-title" >{p.name}</h5>
                     <p className="card-text">{p.description.substring(0,29)}</p>
-                    <p className="card-text">{p.price}</p>
-                    <div className="col-md-12 d-flex justify-content-between">
-                    <button className='btn btn-info' onClick={()=>navigate(`/product-detail/${p.slug}`)}>view</button>
+                    <p className="card-text">$ : {p.price}</p>
+                    <div className="row-md-12 d-flex justify-content-between">
+                 
                     <button className='btn btn-primary' onClick={()=>{store.dispatch(addtocart(p))}}>Add to cart</button></div>
                   </div>
                 </div>
