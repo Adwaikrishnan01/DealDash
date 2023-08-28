@@ -30,9 +30,7 @@ var gateway = new braintree.BraintreeGateway({
       const { nonce, cartlist } = req.body;
       // const itemIds = cartlist.map(item => item._id)
       // const objectIds = itemIds.map(id =>new mongoose.Types.ObjectId(id));
-      // console.log("id of itens",itemIds)
       //  const fullProductDetails = await productModel.find({ _id: { $in: objectIds } }).select("-photo");
-      //  console.log("Full product details", fullProductDetails);
       let total = 0;
       cartlist.map((i) => {
         total += i.price*i.count;

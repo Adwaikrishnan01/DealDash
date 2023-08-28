@@ -8,10 +8,6 @@ import { Modal } from 'antd';
 const Manageusers = () => {
   const [users,setUsers]=useState([])
   const [visible,setVisible]=useState(false)
-  // const[updatedName,setUpdatedName]=useState('')
- 
-  // const [selected, setSelected] = useState(null)
-
   const getUsers=async()=>{
     const {data}=await API.get("/api/v1/auth/getallusers") 
    setUsers(data?.users)

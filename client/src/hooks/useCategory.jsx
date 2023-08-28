@@ -6,7 +6,6 @@ export const useCategory = () => {
     const getCategories=async()=>{
         try{
         const {data}=await API.get('/api/v1/category/getallcategory')
-        data && console.log("cat",data)
         setCategories(data?.allcategory)
     }catch(error){
      console.log(error)

@@ -19,7 +19,6 @@ const ManageProduct = () => {
             try {
               const { data } = await API.get('/api/v1/category/getallcategory')
               if (data.success) {
-                console.log("oo", data)
                 setCategories(data.allcategory);
               }
             } catch (error) {
@@ -40,7 +39,7 @@ const handleCreate=async()=>{
     try{
          const { data } = API.post("/api/v1/product/createproduct", productData )
         if(data?.success){
-            console.log("prosuxt",data)
+          
          alert("product created successfully")
       }
     }catch(error){

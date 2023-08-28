@@ -39,12 +39,9 @@ const Login = () => {
        if(error){
         alert("Error in loggin in")
        }
-         
-        
-       
-        
+
       } catch (error) {
-       console.log("storeerror",error)
+       console.log(error)
       }
     };
   return (

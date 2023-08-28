@@ -36,10 +36,6 @@ const cartSlice=createSlice({
              }
            });
          
-          //  return {
-          //    ...state,
-          //    cartlist: updatedCartlist,
-          //  };
          },
        
         decrement:(state,action)=>{

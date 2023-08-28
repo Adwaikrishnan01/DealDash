@@ -20,7 +20,7 @@ export const createCategorycontroller=AsyncHandler(async(req,res)=>{
 export const updateCategorycontroller=AsyncHandler(async(req,res)=>{
   const {id}=req.params
   const {name}= req.body;
-  console.log("update",name,id)
+ 
   const newcategory=await categoryModel.findByIdAndUpdate(id,{name,slug:slugify(name)},{new:true})
   if(newcategory)
     res.status(201).send({newcategory,success:true,message:"category updated successfully"})

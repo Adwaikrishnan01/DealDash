@@ -28,7 +28,6 @@ const AdminDashboard = () => {
     try {
       const { data } = await API.get('/api/v1/category/getallcategory')
       if (data.success) {
-        console.log("ooo", data)
         setCategory(data.allcategory.length);
       }
     } catch (error) {
@@ -80,7 +79,6 @@ const AdminDashboard = () => {
               </ul>
 
             </div>
-              {/* <button className='btn btn-primary' onClick={()=>{navigate('/dashboard/admin/product')}}>Productlist</button> */}
             </div>
           </Link>
           <Link to={"/dashboard/admin/categories"} className="list-group-item list-group-item-action">

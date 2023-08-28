@@ -18,7 +18,6 @@ const Products = () => {
           }
         };
       
-        //lifecycle method
         useEffect(() => {
           getAllProducts();
         }, []);

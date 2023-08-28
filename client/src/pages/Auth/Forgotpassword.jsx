@@ -1,9 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
 import axios from 'axios'
-// import {useSelector,useDispatch} from 'react-redux'
-// import { userLogin } from '../../components/Redux/authActions';
-// import store from '../../components/Redux/store';
 import './Auth.scss'
 import Layout from '../../components/layout/Layout.jsx';
 import { useNavigate } from 'react-router-dom';
@@ -23,7 +20,6 @@ const Forgotpassword = () => {
             email, newPassword,answer
             });
             if (res &&res.status===200) {
-              console.log("response data",res.data);
               alert("password changed successfully!!!");
               navigate('/login');
             } 

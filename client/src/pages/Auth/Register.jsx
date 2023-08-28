@@ -20,26 +20,11 @@ function Register() {
   const handleregister = async (e) => {
     e.preventDefault();
     console.log(name, email, password, phone, address);
-     
-    // try {
-    //   const res = await axios.post(`${import.meta.env.VITE_APP_API}/api/v1/auth/register`, { 
-    //     name, email, password,phone, address ,answer
-    //   });
-    //   if (res &&res.status===201) {
-    //     console.log("response data",res.data);
-    //     alert("User is registered please login");
-    //     navigate('/login');
-    //   } 
-    // } catch (error) {
-    // if(error.request.status===400){
-    //   alert("user with email already regristerd")
-    // } 
-    // }
      try{
       store.dispatch(Registeruser({name, email, password,phone, address ,answer}))
       navigate('/login')
      }catch(error){
-      console.log("requaser error",error)
+      console.log(error)
      }
   };
   return (

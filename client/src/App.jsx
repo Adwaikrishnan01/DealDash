@@ -21,7 +21,6 @@ import Products from './pages/Admin/Products.jsx'
 import Searchitems from './pages/Searchitems.jsx'
 import ProductDetails from './pages/ProductDetails.jsx'
 import Categories from './pages/Categories.jsx'
-import Test from './pages/Test.jsx'
 import CategoryProduct from './pages/CategoryProduct.jsx'
 import Cartlist from './pages/cartList.jsx'
 import Userorders from './pages/user/Userorders.jsx'
@@ -29,7 +28,7 @@ function App() {
   return (
     <>
     <Routes> 
-      <Route path='/test' element={<Test/>}/>
+    
       <Route exact path="/" element={<Homepage/>} />
       <Route path='/all-categories' element={<Categories/>}/>
       <Route path='/product-detail/:slug' element={<ProductDetails/>}/>

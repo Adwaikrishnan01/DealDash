@@ -18,7 +18,6 @@ const Managecategory = () => {
     try {
       const { data } = await API.get('/api/v1/category/getallcategory')
       if (data.success) {
-        console.log("ooo", data)
         setCategory(data.allcategory);
       }
     } catch (error) {
@@ -76,8 +75,7 @@ const Managecategory = () => {
       console.log(error)
     }
   }
-  console.log("categorylist", category)
-  
+
   useEffect(() => {
     getallCategory(); 
   }, []);
@@ -96,7 +94,6 @@ return (
             setValue={setName}
           /></div>
         <div className='category-table' style={{marginTop:"40px"}}>
-          {/* <TableComponent props={category} header={header} />  */}
           <table className="table">
             <thead>
               <tr>

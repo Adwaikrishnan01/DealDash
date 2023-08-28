@@ -11,7 +11,6 @@ import { useState } from 'react';
 
 const TableComponent = ({header,props}) => {
 
-console.log("categorrr",props);
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -52,7 +51,6 @@ console.log("should",allcategory)
         {allcategory.map((category) => (
             <StyledTableRow key={category._id}>
               <StyledTableCell align="right">{category.name}</StyledTableCell>
-              {/* Add more cells for other category properties */}
             </StyledTableRow>))}
           
         </TableBody>

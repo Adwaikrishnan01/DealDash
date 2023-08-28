@@ -11,7 +11,6 @@ const Searchitems = () => {
       try{
         const products=await API.get(`/api/v1/product/search-product/${word}`)
         if(products){
-          console.log(products)
           setItems(products.data)
           console.log("prosuct list",items);
           }

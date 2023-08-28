@@ -21,7 +21,6 @@ const Cartlist = () => {
   const getToken = async (req, res) => {
     const { data } = await API.get("/api/v1/payment/braintree/token")
     setclientToken(data?.clientToken)
-    console.log("clientToken", data)
 
   }
   const handlePayment = async () => {
@@ -42,6 +41,7 @@ const Cartlist = () => {
   useEffect(() => {
     store.dispatch(getCurrentUser())
   }, [])
+
   const rendercart = cartlist.map((item) => {
     return (
       <div className="col-md-7 border-dark" key={item._id}>
@@ -87,7 +87,6 @@ const Cartlist = () => {
   })
   const Ordersummary = ({ cartlist }) => {
     let total = 0;
-    console.log("orderysummmm", cartlist);
     return (
       <div className='col-md-8'><table className='table'>
         <thead>

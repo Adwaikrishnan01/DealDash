@@ -51,7 +51,7 @@ const Homepage = () => {
 
         const handleFilter=(value,id)=>{
           let all=[...checked]
-          console.log("all",all,id)
+        
           
           if (value) {
             all.push(id);
@@ -64,8 +64,8 @@ const Homepage = () => {
                  try{
                   const {data}=await API.post('/api/v1/product/product-filter',{checked,radio})
                   setProducts(data?.products)
-                  console.log("filteredproduct",data)
-                  //setProducts()
+                
+                
                  }catch(error){
                   console.log(error)
                  }

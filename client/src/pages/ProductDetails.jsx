@@ -11,7 +11,7 @@ const ProductDetails = () => {
     const [product,setProduct]=useState({})
     const dispatch=useDispatch()
     const [similarProd,setsimilarProd]=useState([])
-    console.log(";;;",product)
+   
     const params=useParams();
     useEffect(()=>{
          if(params?.slug) getSingleProduct();
@@ -21,7 +21,7 @@ const ProductDetails = () => {
         
         try{
              const {data}=await API.get(`/api/v1/product/getsingleproduct/${params.slug}`)
-             console.log(data)
+           
             setProduct(data?.product)
             relatedProducts(data?.product._id,data?.product.category._id)
         }catch(error){
@@ -31,7 +31,6 @@ const ProductDetails = () => {
     const relatedProducts=async(pid,cid)=>{
       try{
         const {data}=await API.get(`/api/v1/product/related-product/${pid}/${cid}`)
-        console.log("similarproducts",data.products)
         setsimilarProd(data.products)
       }catch(error){
         console.log(error)

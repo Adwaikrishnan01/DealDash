@@ -48,8 +48,7 @@ export const login = AsyncHandler(async (req, res) => {
         res.status(404);
       throw new Error("user not found");    
      }
-     console.log("unhashedpass",password)
-     console.log("userpassword",user.password)
+  
       const authenticated = await comparePassword(password,user.password); 
       if (!authenticated) {
         res.status(200).json({ message: "incorrect email or password" });

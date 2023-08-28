@@ -10,9 +10,7 @@ const Searchinput = () => {
   const dispatch = useDispatch()
   const handleSearch = (e) => {
     e.preventDefault()
-    console.log("searchterm", searchTerm)
     store.dispatch(updateString(searchTerm));
-     
      navigate('/search')
 
   }

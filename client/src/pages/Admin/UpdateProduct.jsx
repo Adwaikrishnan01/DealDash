@@ -4,7 +4,7 @@ import Sidebar from './components/Sidebar.jsx';
 import { useNavigate,useParams } from 'react-router-dom';
 import { Select} from 'antd';
 import API from '../../../services/API.jsx';
-import axios from 'axios';
+
 const updateProduct = () => {
         const navigate = useNavigate();
         const params=useParams()
@@ -22,7 +22,6 @@ const updateProduct = () => {
             try {
               const { data } = await API.get('/api/v1/category/getallcategory')
               if (data.success) {
-                console.log("oo", data)
                 setCategories(data.allcategory);
               }
             } catch (error) {
@@ -63,7 +62,6 @@ const handleUpdate=async()=>{
     try{
          const { data } = await API.put(`/api/v1/product/updateproduct/${id}`, productData )
         if(data?.success){
-            console.log("prosuxt",data)
          alert("product updated successfully")
       }
     }catch(error){
@@ -86,12 +84,10 @@ const handleDelete=async()=>{
 
  useEffect(() => {
   getallCategory();
-
 }, []);
-useEffect(() => {
 
+useEffect(() => {
   getSingleProduct();
-     //eslint-disable-next-line
 }, []);
  
   return (
