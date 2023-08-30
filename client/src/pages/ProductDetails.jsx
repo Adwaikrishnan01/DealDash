@@ -48,7 +48,7 @@ const ProductDetails = () => {
           <img
             src={`http://localhost:8000/api/v1/product/getphoto/${product._id}`}
             alt={product.name}
-            className="img-fluid rounded shadow" style={{maxWidth:"350px"}}
+            className="img-fluid rounded shadow" style={{width:"340px",height:"400px"}}
           />
         </div>
         <div className="col-md-6">
@@ -62,9 +62,9 @@ const ProductDetails = () => {
       </div>
       <div className="row md-12 my-3" >
       <h5 className='text-left'>Similar products</h5>{similarProd.length===0 &&<p>no similar products found</p>}
-      <div className="row flex-nowrap " >
+      <div className="row flex-nowrap overflow-x-scroll" >
         {similarProd.map(pd => (
-          <div key={pd.id} className="col-md-4 mb-4" style={{height:"320px",width:"230px"}}>
+          <div key={pd.id} className="row-md-12 mb-4" style={{height:"390px",width:"230px"}}>
             <div className="card" >
               <img
                 src={`http://localhost:8000/api/v1/product/getphoto/${pd._id}`}
@@ -79,13 +79,9 @@ const ProductDetails = () => {
             </div>
           </div>
         ))}
-      </div>
-    </div>
-      
-    </div>
-          
-   
-        
+       </div>
+       </div>
+     </div> 
     </Layout>
   )
 }

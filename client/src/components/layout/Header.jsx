@@ -79,15 +79,12 @@ function Header() {
                   All Categories
                 </Link>
                 {categories.map((item)=>(
-                <Link className="dropdown-item" to={`/category-products/${item.slug}`}>{item.name}</Link>
+                <Link className="dropdown-item" key={item.name} to={`/category-products/${item.slug}`}>{item.name}</Link>
                   
               ))}
               </div>
             </li>{user===null && (<>
-           
-          
-     
-            
+  
              <li>
                   <Link to="/about">About</Link>
                 </li>
@@ -99,7 +96,8 @@ function Header() {
               <button className="btn btn__login">Login</button>
             </Link><li><Link to="/register">
               <button className="btn ">Register</button>
-            </Link></li> <li><Link to="/cartlist">Cart</Link></li></>)}
+            </Link></li> <li><Link to="/cartlist">Cart<span 
+              className="position-absolute top-0 right-0 badge p-1 bg-danger rounded-circle">{cartLength>0?cartLength:""}</span></Link></li></>)}
 
             {user?.role === 1 && (<><li>
               <Link to="/admindashboard">admindashboard</Link></li>
@@ -109,7 +107,7 @@ function Header() {
             {user?.role === 0 && (<>
               <li><Link to="/orders">Orders</Link></li>
               <li><Link to="/cartlist">Cart<span 
-              className="position-absolute top-1 translate-middle badge p-1 bg-danger rounded-circle">{cartLength}</span></Link> </li>
+              className="position-absolute top-1 translate-middle badge p-1 bg-danger rounded-circle">{cartLength>0?cartLength:""}</span></Link> </li>
               <UserProfile/>
               </>)}
          

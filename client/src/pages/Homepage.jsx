@@ -42,7 +42,7 @@ const Homepage = () => {
         useEffect(() => {
           const token=localStorage.getItem("token")
           if(token){
-            store.dispatch(getCurrentUser())
+           // store.dispatch(getCurrentUser())
           }
           getAllCategory()
           getAllProducts();
@@ -88,7 +88,7 @@ const Homepage = () => {
             <h4 className='test-center'>Filter by category</h4>
             <div className='d-flex flex-column'>
               {category?.map((c)=>(
-                <Checkbox key={c.id} onChange={(e) => handleFilter(e.target.checked, c._id)}
+                <Checkbox key={c._id} onChange={(e) => handleFilter(e.target.checked, c._id)}
                 >{c.name}</Checkbox>  
               ))}
             </div>
@@ -116,8 +116,8 @@ const Homepage = () => {
         <div className="col-md-9 ">
         
           <div className="d-flex flex-wrap">
-            {products?.map((p) => (<>
-                <div className="card m-2" key={p.id} style={{ width: "18rem" }} >
+            {products?.map((p) => (
+                <div className="card m-2" key={p._id} style={{ width: "18rem" }} >
                 <Link to={`/product-detail/${p.slug}`} className="list-group-item list-group-item-action">
                   <img
                     src={`http://localhost:8000/api/v1/product/getphoto/${p._id}`}
@@ -133,7 +133,7 @@ const Homepage = () => {
                     <button className='btn btn-primary' onClick={()=>{store.dispatch(addtocart(p))}}>Add to cart</button></div>
                   </div>
                 </div>
-              </>
+              
             ))}
           </div>
         </div>

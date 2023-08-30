@@ -37,7 +37,7 @@ function App() {
       <Route path='/contact' element={<Contact/>}/>
       <Route path='/cartlist' element={<Cartlist/>}/>
       <Route exact path="/user/orders" element={< ProtectedRoute><Userorders/></ProtectedRoute>}/>
-      <Route exact path="/about" element={< ProtectedRoute><About/></ProtectedRoute>}/>
+      <Route exact path="/about" element={<About/>}/>
       <Route exact path="/orders" element={< ProtectedRoute><Userorders/></ProtectedRoute>}/>
       <Route path="/admindashboard" element={< ProtectedRoute><AdminDashboard/></ProtectedRoute>}/>
       <Route path='/policy' element={<ProtectedRoute><Policy/></ProtectedRoute>}/>

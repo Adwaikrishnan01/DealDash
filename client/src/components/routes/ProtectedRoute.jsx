@@ -2,6 +2,7 @@ import { useState, useEffect, Component } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Navigate } from 'react-router-dom';
 import { getCurrentUser } from '../Redux/authActions';
+
 const ProtectedRoute = ({ children }) => {
   const user=useSelector((state)=>state.auth).user
  
@@ -17,7 +18,6 @@ const ProtectedRoute = ({ children }) => {
         getUser();
       },[]);
       if (localStorage.getItem("token")) {
-        console.log("token in getuser",localStorage.getItem("token"))
         return children;
       } else {
         return <Navigate to="/login" />;

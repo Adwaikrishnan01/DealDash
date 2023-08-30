@@ -2,24 +2,23 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import API from "../../../services/API";
 import { useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
+import ProtectedRoute from "../routes/ProtectedRoute";
 
 
 export const userLogin = createAsyncThunk(
     "/api/v1/auth/login",
     async ({email, password }, { rejectWithValue }) => {
-      
-      console.log("email and pass in userlogin",email,password)
       try {
         const { data } = await API.post("/api/v1/auth/login", {  email, password });    
     
         
         //store token
         if (data.token) {
-          alert("logged in");
           localStorage.setItem("token", data.token);
-           //store.dispatch(getCurrentUser())
+          alert("logged in");
+         
         }else{
-          alert("Error in logging in")
+          alert("error in login")
         }
         
           return data;
@@ -32,7 +31,7 @@ export const userLogin = createAsyncThunk(
       }
     }
   );
-   export const getCurrentUser=createAsyncThunk('user/getCurrentUser',async(_,{rejectWithValue})=>{
+    export const getCurrentUser=createAsyncThunk('user/getCurrentUser',async(_,{rejectWithValue})=>{
         try{
           const {data}=await API.get('/api/v1/auth/currentuser')
          

@@ -19,7 +19,7 @@ const UserProfile=()=>{
      <Avatar style={{ backgroundColor: '#87d068' }} icon={<UserOutlined />} />  
   </Link>
     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-    <button className="dropdown-item"  style={{padding:"10px"}}onClick={() => dispatch(userLogout())}>
+    <button className="dropdown-item"  style={{padding:"10px 20px"}}onClick={() => dispatch(userLogout())}>
        Logout
       </button>
       <Link className="dropdown-item" to="/user/manageuser">
